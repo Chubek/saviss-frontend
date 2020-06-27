@@ -42,6 +42,8 @@ export const login = async (number, otp) => {
         } else if (e.response.status === 500) {
             toast("OTP expired!");
             return false;
+        } else if (e.response.status === 403) {
+            throw new Error("OTPINCORRECT")
         }
     }
 
