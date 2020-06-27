@@ -51,7 +51,7 @@ export function authListener(number, otp) {
     return async (dispatch, getState) => {
         const remaining = getState().listener.otpSentNum;
 
-        if (remaining > 0) {
+        if (remaining >= 1) {
             try {
                 const loginRes = await login(number, otp);
 
@@ -75,4 +75,34 @@ export function authListener(number, otp) {
 
     }
 
+}
+
+export function resetRemaining() {
+    return ({type: CONSTANTS.SET_REMAINING_NUM, payload: 3})
+}
+
+
+export default function ListenerStateReducer(
+    state = initialState,
+    action = {}
+) {
+    switch (action.type) {
+        case CONSTANTS.SET_OTP_SENT:
+            return {
+                ...state,
+                otpSent: action.payload
+            };
+        case CONSTANTS.SET_REMAINING_NUM:
+            return {
+                ...state,
+                otpSentNum: action.payload
+            };
+        case CONSTANTS.SET_TOKEN:
+            return {
+                ...state,
+                token: action.payload
+            };
+        default:
+            return state;
+    }
 }
