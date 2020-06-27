@@ -1,10 +1,10 @@
 import axios from "axios"
-import {ToastAndroid} from "react-native"
 import SERVER_URL from "@root/globalStr.env";
+import {toast} from "@wrappers/toast";
 
-const requestOtp = async (number) => {
+export const requestOtp = async (number) => {
     if (!number) {
-        ToastAndroid.showWithGravity("No number has been entered", ToastAndroid.SHORT, ToastAndroid.CENTER);
+        toast("No number has been entered");
     }
 
     try {
@@ -17,11 +17,7 @@ const requestOtp = async (number) => {
         const otpSent = otpRes.data;
 
         if (!otpSent) {
-            ToastAndroid.showWithGravity(
-                "OTP send error",
-                ToastAndroid.SHORT,
-                ToastAndroid.CENTER
-            );
+            toast("OTP send error");
             return false;
         }
 
@@ -29,7 +25,7 @@ const requestOtp = async (number) => {
 
     } catch (e) {
         if (e.response.status === 404) {
-            ToastAndroid.showWithGravity("Number not found", ToastAndroid.SHORT, ToastAndroid.CENTER);
+            toast("Number not found");
             return false;
         }
     }

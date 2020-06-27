@@ -9,8 +9,10 @@ module.exports = function(api) {
           "alias": {
             "@components": "./components",
             "@config": "./config",
-            "@state": "./state",
-            "@root" : "./"
+            "@state": "./redux/state",
+            "@redux": "./redux",
+            "@root" : "./",
+            "@wrappers": "./api/wrappers"
           }
         }
       ]

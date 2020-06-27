@@ -1,40 +1,24 @@
 import axios from "axios"
-import {ToastAndroid} from "react-native"
 import SERVER_URL from "@root/globalStr.env";
+import {toast} from "@wrappers/toast";
 
-const register = async (userName, number, bio) => {
+export const register = async (userName, number, bio) => {
     if (!userName) {
-        ToastAndroid.showWithGravity(
-            "Name not entered",
-            ToastAndroid.SHORT,
-            ToastAndroid.CENTER
-        );
+        toast("Name not entered");
         return false;
     }
     if (!number) {
-        ToastAndroid.showWithGravity(
-            "Number not entered",
-            ToastAndroid.SHORT,
-            ToastAndroid.CENTER
-        );
+        toast("Number not entered");
         return false;
     }
 
     const pattern = / ^(?:(?:\+|0{0,2})91(\s*[\-]\s*)?|[0]?)?[789]\d{9}$ /;
     if (pattern.test(number)) {
-        ToastAndroid.showWithGravity(
-            "Number must be Indian",
-            ToastAndroid.SHORT,
-            ToastAndroid.CENTER
-        );
+        toast("Number must be Indian");
     }
 
     if (!bio) {
-        ToastAndroid.showWithGravity(
-            "Bio not entered",
-            ToastAndroid.SHORT,
-            ToastAndroid.CENTER
-        );
+        toast("Bio not entered");
         return false;
     }
 
@@ -49,26 +33,13 @@ const register = async (userName, number, bio) => {
         }
     } catch (e) {
         if (e.response.status === 401) {
-            console.log(e.response);
             if (e.response.data.isSame === "userName") {
-                ToastAndroid.showWithGravity(
-                    "Username exists!",
-                    ToastAndroid.SHORT,
-                    ToastAndroid.CENTER
-                );
+                toast("Username exists!");
             } else if (e.response.data.isSame === "number") {
-                ToastAndroid.showWithGravity(
-                    "Number exists!",
-                    ToastAndroid.SHORT,
-                    ToastAndroid.CENTER
-                );
+                toast("Number exists!");
                 return false;
             } else if (e.response.data.numberNotIndian) {
-                ToastAndroid.showWithGravity(
-                    "Number is not Indian!",
-                    ToastAndroid.SHORT,
-                    ToastAndroid.CENTER
-                );
+                toast("Number is not Indian!");
                 return false;
             }
         }

@@ -1,16 +1,16 @@
 import axios from "axios"
-import {ToastAndroid} from "react-native"
 import SERVER_URL from "@root/globalStr.env";
+import {toast} from "@wrappers/toast";
 
 
-const startSession = async (seekerNumber, seekerReason) => {
+export const startSession = async (seekerNumber, seekerReason) => {
     if (!seekerNumber) {
-        ToastAndroid.showWithGravity("Number not entered", ToastAndroid.SHORT, ToastAndroid.CENTER);
+        toast("Number not entered");
         return false;
     }
 
     if (!seekerReason) {
-        ToastAndroid.showWithGravity("Reason not entered", ToastAndroid.SHORT, ToastAndroid.CENTER);
+        toast("Reason not entered");
         return false;
     }
 
