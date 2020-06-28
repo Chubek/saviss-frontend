@@ -1,5 +1,4 @@
 import axios from "axios"
-import SERVER_URL from "@root/globalStr.env";
 import {toast} from "@wrappers/toast";
 
 export const register = async (userName, number, bio) => {
@@ -24,7 +23,7 @@ export const register = async (userName, number, bio) => {
 
     try {
         const registerRes = await axios.post(
-            `${SERVER_URL}/listener/register`,
+            `${process.env.SERVER_URL}/listener/register`,
             {number, bio, userName, isTest: "true"}
         );
 

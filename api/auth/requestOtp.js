@@ -1,5 +1,5 @@
 import axios from "axios"
-import SERVER_URL from "@root/globalStr.env";
+
 import {toast} from "@wrappers/toast";
 
 export const requestOtp = async (number) => {
@@ -9,7 +9,7 @@ export const requestOtp = async (number) => {
 
     try {
         const otpRes = await axios.put(
-            `${SERVER_URL}/listener/request/otp`,
+            `${process.env.SERVER_URL}/listener/request/otp`,
             {number, isTest: "true"}
             //change "true" to "false" in production
         );

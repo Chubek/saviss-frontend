@@ -1,5 +1,4 @@
 import axios from "axios"
-import SERVER_URL from "@root/globalStr.env";
 import {toast} from "@wrappers/toast";
 
 export const login = async (number, otp) => {
@@ -16,7 +15,7 @@ export const login = async (number, otp) => {
             return false;
         }
 
-        const authRes = await axios.post(`${SERVER_URL}/listener/auth`, {
+        const authRes = await axios.post(`${process.env.SERVER_URL}/listener/auth`, {
             number,
             password: otp
         });

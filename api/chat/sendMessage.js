@@ -1,10 +1,8 @@
 import axios from "axios"
-import SERVER_URL from "@root/globalStr.env";
-
 
 export const sendMessage = async (message, sessionId) => {
     try {
-        const sendRes = await axios.post(`${SERVER_URL}/chat/sendMessage`, {
+        const sendRes = await axios.post(`${process.env.SERVER_URL}/chat/sendMessage`, {
             data: JSON.stringify(message)
         }, {headers: {"x-session-id": sessionId}});
 
