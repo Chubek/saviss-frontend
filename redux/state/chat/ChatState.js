@@ -12,7 +12,7 @@ import moment from "moment";
 import * as Ably from "ably";
 
 
-const realtime = new Ably.Realtime(process.env.ABLY_API);
+export const realtime = new Ably.Realtime(process.env.ABLY_API);
 
 
 const initialState = {
@@ -21,7 +21,8 @@ const initialState = {
     partnerLeft: false,
     acceptedByListener: false,
     messages: [],
-    startTime: null
+    startTime: null,
+    isChatting: false
 
 };
 
@@ -54,6 +55,8 @@ export function acceptSession(sessionId) {
         if (acceptRes) {
             dispatch({type: CONSTANTS.SET_SESSION_ID, payload: sessionId});
             dispatch({type: CONSTANTS.SET_NAME, payload: "Listener"});
+            dispatch({ type: CONSTANTS.SET_IS_CHATTING, payload: true });
+
         }
 
     }
@@ -83,6 +86,7 @@ export function endSession() {
             dispatch({type: CONSTANTS.SET_MESSAGES, payload: null});
             dispatch({type: CONSTANTS.SET_NAME, payload: null});
             dispatch({type: CONSTANTS.SET_START_TIME, payload: null})
+            dispatch({ type: CONSTANTS.SET_IS_CHATTING, payload: false });
             return true;
         }
     }
@@ -110,6 +114,7 @@ export function seekerLounge() {
         channel.subscribe("accepted", (message) => {
             dispatch({type: CONSTANTS.SET_ACCEPTED_BY_LISTENER, payload: true});
             dispatch({type: CONSTANTS.SET_NAME, payload: "Seeker"});
+            dispatch({ type: CONSTANTS.SET_IS_CHATTING, payload: true });
             toast("Session was accepted");
             return true;
         });
@@ -174,7 +179,12 @@ export default function ChatStateReducer(state = initialState, action = {}) {
             return {
                 ...state,
                 startTime: action.payload
-            }
+            };
+        case CONSTANTS.SET_IS_CHATTING:
+            return {
+                ...state,
+                isChatting: action.payload
+            };
         default:
             return state;
     }
