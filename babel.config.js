@@ -14,7 +14,8 @@ module.exports = function (api) {
                         "@redux": "./redux",
                         "@root": "./",
                         "@wrappers": "./api/wrappers",
-                        "@api": "./api"
+                        "@api": "./api",
+                        "@assets": "./assets"
                     }
                 }
             ],
