@@ -30,7 +30,7 @@ const loginScreenEnhancer = Component => props => {
     })
 
     return (
-        <ImageBackground source={Images.background} style={loginScreenStyles.bgStyle}>
+        <ImageBackground source={Images.background} style={globalStyles.bg}>
             <Component {...props} onRequestOtp={onRequestOtp} onLogin={onLogin} setNumber={setNumber} setOtp={setOtp}
                        loginPress={loginPressed}/>
         </ImageBackground>
