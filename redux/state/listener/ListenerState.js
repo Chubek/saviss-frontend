@@ -50,25 +50,27 @@ export function requestOtp(number) {
 export function authListener(number, otp) {
     return async (dispatch, getState) => {
         const remaining = getState().listener.otpSentNum;
-
+        dispatch({type: CONSTANTS.SET_REMAINING_NUM, payload: -1});
         if (remaining >= 1) {
             try {
                 const loginRes = await login(number, otp);
 
                 if (loginRes) {
-                    dispatch({type: CONSTANTS.SET_OTP_SENT, payload: loginRes});
+                    dispatch({type: CONSTANTS.SET_TOKEN, payload: loginRes});
                     return true;
                 }
             } catch (e) {
                 if (e.message === "OTPINCORRECT") {
                     toast(`Incorrect OTP. You have ${remaining} tries remaining`);
                     dispatch({type: CONSTANTS.SET_REMAINING_NUM, payload: remaining - 1});
+                    dispatch({type: CONSTANTS.SET_OTP_SENT, payload: false});
                     return false;
                 }
             }
         } else {
             toast("You have no more tries left");
             dispatch({type: CONSTANTS.SET_REMAINING_NUM, payload: 3});
+            dispatch({type: CONSTANTS.SET_OTP_SENT, payload: false});
             return false;
         }
 
