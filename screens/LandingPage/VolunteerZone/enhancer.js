@@ -6,7 +6,7 @@ import {connect} from "react-redux";
 import {useNavigation} from '@react-navigation/native';
 
 
-export default compose(connect({token: state.listener.token}),
+export default compose(connect(state => ({token: state.listener.token})),
     Component => props => {
         const navigation = useNavigation();
 
