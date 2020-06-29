@@ -29,6 +29,4 @@ const frontPageEnhancer = Component => props => {
 }
 
 
-export default compose(
-    connect()
-)(frontPageEnhancer)
+export default frontPageEnhancer;

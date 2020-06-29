@@ -31,10 +31,8 @@ const volunteerZoneEnhancer = Component => props => {
 }
 
 
-export default compose(
-    connect(
-        state => ({
-            token: state.listener.token
-        })
-    )
+export default connect(
+    state => ({
+        token: state.listener.token
+    })
 )(volunteerZoneEnhancer)
