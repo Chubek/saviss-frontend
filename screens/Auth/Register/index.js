@@ -27,8 +27,9 @@ const registerScreen = props => {
                        onChangeText={t => props.setBio(t)}/>
             </Row>
             <Row>
-                <Button containerStyle={globalStyles.buttonContainerStyle} buttonStyle={globalStyles.buttonStyle}
-                        disabled={props.registerClicked} title="Register" onPress={() => props.onRegister}/>
+                {props.registerClicked ? <ActivityIndicator size="small" color="#00ff00"/> :
+                    <Button containerStyle={globalStyles.buttonContainerStyle} buttonStyle={globalStyles.buttonStyle}
+                            disabled={props.registerClicked} title="Register" onPress={() => props.onRegister}/>}
             </Row>
         </Grid>
     )
