@@ -22,8 +22,10 @@ export default Component => props => {
 
     return (
         <ImageBackground source={Images.background} style={globalStyles.bg}>
-            <Component {...props} onNavigateToZone={onNavigateToZone} onNavigateToChat={onNavigateToChat}
-                       onNavigateToDonate={onNavigateToDonate}/>
+            <Component {...props} {...{
+                onNavigateToZone, onNavigateToChat,
+                onNavigateToDonate
+            }}/>
         </ImageBackground>
     )
 }

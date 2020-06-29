@@ -26,8 +26,10 @@ export default compose(connect({token: state.listener.token}),
 
         return (
             <ImageBackground source={Images.background} style={globalStyles.bg}>
-                <Component {...props} onNavigateToLogin={onNavigateToLogin}
-                           onNavigateToRegister={onNavigateToRegister}/>
+                <Component {...props} {...{
+                    onNavigateToLogin,
+                    onNavigateToRegister
+                }}/>
             </ImageBackground>
         )
     }

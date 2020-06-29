@@ -52,12 +52,14 @@ export default compose(
 
         return (
             <ImageBackground style={globalStyles.bg} source={Images.background}><Component {...props}
-                                                                                           setNumber={setNumber}
-                                                                                           setBio={setBio}
-                                                                                           setUserName={setUserName}
-                                                                                           numberIndian={numberIndian}
-                                                                                           registerClicked={registerClicked}
-                                                                                           onRegister={onRegister}/></ImageBackground>
+                                                                                           {...{
+                                                                                               setNumber,
+                                                                                               setBio,
+                                                                                               setUserName,
+                                                                                               numberIndian,
+                                                                                               registerClicked,
+                                                                                               onRegister
+                                                                                           }}/></ImageBackground>
         )
 
     }
