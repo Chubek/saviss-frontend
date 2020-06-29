@@ -1,11 +1,8 @@
 import React from "react";
 import {ActivityIndicator} from "react-native";
-import {compose} from "redux";
-import {connect} from "react-redux";
-import {authListener, requestOtp} from "@redux/state/listener/ListenerState";
-import loginScreenEnhancer from "./enhancer"
 import {Grid, Row} from "react-native-easy-grid";
 import {Button, Input} from "react-native-elements"
+import loginScreenEnhancer from "./enhancer";
 
 const loginScreen = props => {
     return (
@@ -26,15 +23,4 @@ const loginScreen = props => {
 }
 
 
-export default compose(
-    connect(
-        state => ({
-            otpSent: state.listener.otpSent,
-            otpSentNum: state.listener.otpSentNum
-        }),
-        dispatch => ({
-            authListener: (number, otp) => dispatch(authListener(number, otp)),
-            requestOtp: (number) => dispatch(requestOtp(number))
-        })
-    )
-)(loginScreenEnhancer(loginScreen))
+export default loginScreenEnhancer(loginScreen);
