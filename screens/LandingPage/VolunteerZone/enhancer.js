@@ -6,29 +6,29 @@ import {connect} from "react-redux";
 import {useNavigation} from '@react-navigation/native';
 
 
-const volunteerZoneEnhancer = Component => props => {
-    const navigation = useNavigation();
+export default compose(connect({token: state.listener.token}),
+    Component => props => {
+        const navigation = useNavigation();
 
-    const onNavigateToLogin = () => {
-        navigation.navigate("LoginScreen");
-    }
-
-    const onNavigateToRegister = () => {
-        navigation.navigate("RegisterScreen");
-    }
-
-    useEffect(() => {
-        if (props.token) {
-            navigation.navigate("WaitingPoolScreen");
+        const onNavigateToLogin = () => {
+            navigation.navigate("LoginScreen");
         }
-    })
 
-    return (
-        <ImageBackground source={Images.background} style={globalStyles.bg}>
-            <Component {...props} onNavigateToLogin={onNavigateToLogin} onNavigateToRegister={onNavigateToRegister}/>
-        </ImageBackground>
-    )
-}
+        const onNavigateToRegister = () => {
+            navigation.navigate("RegisterScreen");
+        }
 
+        useEffect(() => {
+            if (props.token) {
+                navigation.navigate("WaitingPoolScreen");
+            }
+        })
 
-export default connect({token: state.listener.token})(volunteerZoneEnhancer);
+        return (
+            <ImageBackground source={Images.background} style={globalStyles.bg}>
+                <Component {...props} onNavigateToLogin={onNavigateToLogin}
+                           onNavigateToRegister={onNavigateToRegister}/>
+            </ImageBackground>
+        )
+    }
+);

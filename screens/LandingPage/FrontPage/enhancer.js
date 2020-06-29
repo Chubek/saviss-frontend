@@ -5,7 +5,7 @@ import {useNavigation} from '@react-navigation/native';
 import {ImageBackground} from "react-native";
 
 
-const frontPageEnhancer = Component => props => {
+export default Component => props => {
     const navigation = useNavigation();
 
     const onNavigateToZone = () => {
@@ -29,4 +29,3 @@ const frontPageEnhancer = Component => props => {
 }
 
 
-export default frontPageEnhancer;
