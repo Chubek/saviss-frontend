@@ -9,13 +9,15 @@ import {authListener, requestOtp} from "@redux/state/listener/ListenerState";
 const loginScreenEnhancer = Component => props => {
 
     const [loginPressed, setLoginPressed] = useState(false);
+    const [number, setNumber] = useState();
+    const [otp, setOtp] = useState();
 
-    const onSendOtp = () => {
-        props.otpSent(props.number);
+    const onRequestOtp = () => {
+        props.requestOtp(number);
     }
 
     const onLogin = () => {
-        props.authListener(props.number, props.otp);
+        props.authListener(number, otp);
         setLoginPressed(true);
     }
 
@@ -29,7 +31,8 @@ const loginScreenEnhancer = Component => props => {
 
     return (
         <ImageBackground source={Images.background} style={loginScreenStyles.bgStyle}>
-            <Component {...props} loginPress={loginPressed}/>
+            <Component {...props} onRequestOtp={onRequestOtp} onLogin={onLogin} setNumber={setNumber} setOtp={setOtp}
+                       loginPress={loginPressed}/>
         </ImageBackground>
     )
 
