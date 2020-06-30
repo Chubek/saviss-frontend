@@ -17,7 +17,8 @@ const waitingPoolScreen = props => {
             <Row>
                 {
                     props.pool.map(l => {
-                        return <PoolMember key={uuid()} reason={l.reason} sessionId={l.sessionId} {...props} />
+                        return <PoolMember key={uuid()} requestedAt={l.requestedAt} reason={l.reason}
+                                           sessionId={l.sessionId} {...props} />
                     })
                 }
             </Row>
