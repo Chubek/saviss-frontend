@@ -21,7 +21,7 @@ const startSessionScreen = props => {
             <Row>
                 {props.buttonPressed ? <ActivityIndicator size="small" color="#00ff00"/> :
                     <Button containerStyle={globalStyles.buttonContainerStyle} buttonStyle={globalStyles.buttonStyle}
-                            disabled={props.registerClicked} title="Seek Help" onPress={() => props.onStartSession()}/>}
+                            disabled={props.buttonPressed} title="Seek Help" onPress={() => props.onStartSession()}/>}
             </Row>
         </Grid>
     )

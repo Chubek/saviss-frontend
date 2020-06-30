@@ -6,7 +6,6 @@ import {toast} from "@wrappers/toast";
 
 const initialState = {
     pool: [],
-    poolChannel: null
 };
 
 export function getPool() {
@@ -77,11 +76,6 @@ export default function PoolStateReducer(
             return {
                 ...state,
                 pool: [...state.pool, ...action.payload]
-            };
-        case CONSTANTS.SET_UPDATE_AUTO:
-            return {
-                ...state,
-                updateAuto: !state.updateAuto
             };
         case CONSTANTS.REMOVE_FROM_POOL:
             return {

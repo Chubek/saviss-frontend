@@ -13,7 +13,7 @@ const seekerLoungeScreen = props => {
             <Row>
                 {props.cancelPushed ? <ActivityIndicator size="small" color="#00ff00"/> :
                     <Button containerStyle={globalStyles.buttonContainerStyle} buttonStyle={globalStyles.buttonStyle}
-                            disabled={props.registerClicked} title="Cancel" onPress={() => props.onCancelSession()}/>}
+                            disabled={props.cancelPushed} title="Cancel" onPress={() => props.onCancelSession()}/>}
             </Row>
         </Grid>
     )
