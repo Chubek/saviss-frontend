@@ -34,6 +34,9 @@ export default compose(
         }
 
         useEffect(() => {
+
+            props.seekerLounge();
+
             if (props.acceptedByListener) {
                 navigation.navigate("ChatScreen");
             }
