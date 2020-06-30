@@ -3,6 +3,7 @@ import {ActivityIndicator} from "react-native";
 import {Grid, Row} from "react-native-easy-grid";
 import {Button, Input} from "react-native-elements"
 import loginScreenEnhancer from "./enhancer";
+import globalStyles from "@components/globalStyles";
 
 const loginScreen = props => {
     return (

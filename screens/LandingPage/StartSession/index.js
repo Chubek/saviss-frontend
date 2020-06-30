@@ -3,6 +3,7 @@ import {Grid, Row} from "react-native-easy-grid";
 import {Input, Button} from "react-native-elements";
 import startSessionEnhancer from "./enhancer"
 import {ActivityIndicator} from "react-native";
+import globalStyles from "@components/globalStyles";
 
 
 const startSessionScreen = props => {

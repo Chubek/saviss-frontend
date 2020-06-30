@@ -79,9 +79,15 @@ export function authListener(number, otp) {
 
 }
 
-export function resetRemaining() {
-    return ({type: CONSTANTS.SET_REMAINING_NUM, payload: 3})
+export function logoutListener() {
+    return async (dispatch, getState) => {
+        if (getState().listener.token) {
+            dispatch({ type: CONSTANTS.SET_TOKEN, payload: null });
+            return true;
+        }
+    };
 }
+
 
 
 export default function ListenerStateReducer(

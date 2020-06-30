@@ -2,6 +2,7 @@ import React from "react";
 import {Grid, Row} from "react-native-easy-grid";
 import {Button} from "react-native-elements";
 import volunteerZoneEnhancer from "./enhancer";
+import globalStyles from "@components/globalStyles";
 
 const volunteerZoneScreen = props => {
     return (

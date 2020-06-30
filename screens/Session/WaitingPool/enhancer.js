@@ -6,7 +6,7 @@ import {useNavigation} from '@react-navigation/native';
 import Images from "@components/Images";
 import {getPool, updatePool} from "@redux/state/pool/PoolState";
 import {acceptSession} from "@redux/state/chat/ChatState";
-import timer from "react-native-timer";
+import {logoutListener} from "@redux/state/listener/ListenerState";
 
 export default compose(
     connect(
@@ -16,7 +16,8 @@ export default compose(
         dispatch => ({
             getPool: () => dispatch(getPool()),
             updatePool: () => dispatch(updatePool()),
-            acceptSession: (sessionId) => dispatch(acceptSession(sessionId))
+            acceptSession: (sessionId) => dispatch(acceptSession(sessionId)),
+            logoutListener: () => dispatch(logoutListener())
         })
     ),
     Component => props => {
@@ -30,6 +31,12 @@ export default compose(
             setGetPushed(false);
         }
 
+        const onLogoutListener = async () => {
+            await props.logoutListener();
+            navigation.navigate("FrontPageScreen");
+        }
+
+
         useEffect(() => {
             props.getPool().done();
             props.updatePool();
@@ -37,7 +44,7 @@ export default compose(
 
         return (
             <ImageBackground source={Images.background} style={globalStyles.bg}>
-                <Component {...props} {...{getPushed, navigation, onGetPool}} />
+                <Component {...props} {...{getPushed, navigation, onLogoutListener, onGetPool}} />
             </ImageBackground>
         )
     }

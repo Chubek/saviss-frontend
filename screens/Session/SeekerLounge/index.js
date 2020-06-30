@@ -3,6 +3,7 @@ import {Grid, Row} from "react-native-easy-grid";
 import {Button, Text} from "react-native-elements";
 import seekerLoungeEnhancer from "./enhancer"
 import {ActivityIndicator} from "react-native";
+import globalStyles from "@components/globalStyles";
 
 const seekerLoungeScreen = props => {
     return (

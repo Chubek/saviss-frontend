@@ -4,6 +4,7 @@ import {Button} from "react-native-elements";
 import chatEnhancer from "./enhancer";
 import {ActivityIndicator} from "react-native";
 import {GiftedChat} from "react-native-gifted-chat";
+import globalStyles from "@components/globalStyles";
 
 const chatScreen = props => {
     return (
