@@ -24,3 +24,6 @@ const waitingPoolScreen = props => {
         </Grid>
     )
 }
+
+
+export default waitingPoolEnhancer(waitingPoolScreen);
