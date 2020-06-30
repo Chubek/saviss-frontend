@@ -16,7 +16,7 @@ const startSessionScreen = props => {
             <Row>
                 <Input style={globalStyles.input} labelStyle={globalStyles.label} multiline numberOfLines={5}
                        onChangeText={t => props.setReason(t)}
-                       label="Your Reason"/>
+                       label="What do you wanna talk about? (Optional)"/>
             </Row>
             <Row>
                 {props.buttonPressed ? <ActivityIndicator size="small" color="#00ff00"/> :
