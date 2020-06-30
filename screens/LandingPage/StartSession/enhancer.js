@@ -1,0 +1,49 @@
+import React, {useEffect, useState} from "react";
+import {ImageBackground} from "react-native";
+import {compose} from "redux";
+import {connect} from "react-redux";
+import {startSession} from "@redux/state/chat/ChatState";
+import {useNavigation} from '@react-navigation/native';
+import Images from "@components/Images";
+import {toast} from "@wrappers/toast";
+
+export default compose(
+    connect(
+        state => ({
+            isChatting: state.chat.isChatting,
+        }),
+        dispatch => ({
+            startSession: (number, reason) => dispatch(startSession(number, reason))
+        })
+    ),
+    Component => props => {
+        const navigation = useNavigation();
+
+        const [number, setNumber] = useState();
+        const [reason, setReason] = useState();
+        const [buttonPressed, setButtonPressed] = useState(false);
+
+        const onStartSession = async () => {
+            if (!props.isChatting) {
+                setButtonPressed(true);
+                const startRes = await props.startSession(number, reason);
+
+                if (startRes) {
+                    navigation.navigate("SeekerLoungeScreen");
+                }
+
+                setButtonPressed(false);
+
+            } else {
+                toast("Currently chatting");
+                return false;
+            }
+        }
+
+        return (
+            <ImageBackground source={Images.background} style={globalStyles.bg}>
+                <Component {...props} {...{setNumber, setReason, buttonPressed, onStartSession}} />
+            </ImageBackground>
+        )
+    }
+)

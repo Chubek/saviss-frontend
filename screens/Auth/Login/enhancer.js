@@ -1,10 +1,10 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import Images from "@components/Images";
 import {ImageBackground} from "react-native";
 import {compose} from "redux";
 import {connect} from "react-redux";
 import {authListener, requestOtp} from "@redux/state/listener/ListenerState";
-
+import {useNavigation} from '@react-navigation/native';
 
 export default compose(
     connect(
@@ -18,27 +18,24 @@ export default compose(
         })
     ),
     Component => props => {
-
+        const navigation = useNavigation();
         const [loginPressed, setLoginPressed] = useState(false);
         const [number, setNumber] = useState();
         const [otp, setOtp] = useState();
 
-        const onRequestOtp = () => {
-            props.requestOtp(number);
+        const onRequestOtp = async () => {
+            await props.requestOtp(number);
         }
 
-        const onLogin = () => {
-            props.authListener(number, otp);
+        const onLogin = async () => {
             setLoginPressed(true);
+            const loginRes = await props.authListener(number, otp);
+            if (loginRes) {
+               navigation.navigate("WaitingPoolScreen");
+            }
+            setLoginPressed(false);
         }
 
-        useEffect(() => {
-            if (props.otpSentNum > -1) {
-                setLoginPressed(false);
-            }
-
-
-        })
 
         return (
             <ImageBackground source={Images.background} style={globalStyles.bg}>

@@ -50,7 +50,7 @@ export function requestOtp(number) {
 export function authListener(number, otp) {
     return async (dispatch, getState) => {
         const remaining = getState().listener.otpSentNum;
-        dispatch({type: CONSTANTS.SET_REMAINING_NUM, payload: -1});
+
         if (remaining >= 1) {
             try {
                 const loginRes = await login(number, otp);
