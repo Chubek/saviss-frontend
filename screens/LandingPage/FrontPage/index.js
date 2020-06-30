@@ -8,15 +8,15 @@ const frontPageScreen = props => {
     return (
         <Grid>
             <Row>
-                <Button title="Talk to Someone" onPress={() => props.onNavigateToChat}
+                <Button title="Talk to Someone" onPress={() => props.onNavigateToChat()}
                 containerStyle={globalStyles.buttonContainerStyle} buttonStyle={globalStyles.buttonStyle}/>
             </Row>
             <Row>
-                <Button title="Volunteer Zone" onPress={() => props.onNavigateToZone}
+                <Button title="Volunteer Zone" onPress={() => props.onNavigateToZone()}
                         containerStyle={globalStyles.buttonContainerStyle} buttonStyle={globalStyles.buttonStyle}/>
             </Row>
             <Row>
-                <Button title="Donate" onPress={() => props.onNavigateToDonate}
+                <Button title="Donate" onPress={() => props.onNavigateToDonate()}
                         containerStyle={globalStyles.buttonContainerStyle} buttonStyle={globalStyles.buttonStyle}/>
             </Row>
         </Grid>

@@ -2,7 +2,7 @@ import axios from "axios"
 import moment from "moment";
 import {toast} from "@wrappers/toast";
 
-export const checkTime = async (startTime, sessionId) => {
+export const _checkTime = async (startTime, sessionId) => {
     const now = moment();
 
     if (now.diff(startTime, "minutes") > 3) {

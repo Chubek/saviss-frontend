@@ -3,13 +3,14 @@ import {compose} from "redux";
 import {connect} from "react-redux";
 import {useNavigation} from '@react-navigation/native';
 import {ImageBackground} from "react-native";
-
+import Images from "@components/Images";
+import globalStyles from "@components/globalStyles";
 
 export default Component => props => {
     const navigation = useNavigation();
 
     const onNavigateToZone = () => {
-        navigation.navigate("VolunteerZoneScreen");
+        navigation.navigate("LoginScreen");
     }
 
     const onNavigateToChat = () => {

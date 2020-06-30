@@ -17,7 +17,7 @@ export default function NavigationStack() {
         <NavigationContainer>
             <Stack.Navigator initialRouteName="FrontPageScreen">
                 <Stack.Screen
-                    name="WelcomeScreen"
+                    name="FrontPageScreen"
                     component={FrontPageScreen}
                     options={{headerShown: false}}
                 />

@@ -1,7 +1,7 @@
 import axios from "axios"
 import {toast} from "@wrappers/toast";
 
-export const register = async (userName, number, bio) => {
+export const _register = async (userName, number, bio) => {
     if (!userName) {
         toast("Name not entered");
         return false;

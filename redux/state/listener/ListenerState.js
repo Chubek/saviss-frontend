@@ -1,7 +1,7 @@
 import * as CONSTANTS from "./ListenerConstants";
-import {login} from "@api/auth/logIn";
-import {register} from "@api/auth/register";
-import {requestOtp} from "@api/auth/requestOtp";
+import {_logIn} from "@api/auth/_logIn";
+import {_register} from "@api/auth/_register";
+import {_requestOtp} from "@api/auth/_requestOtp";
 import {toast} from "@wrappers/toast";
 import removedModule from "expo/build/removedModule";
 
@@ -20,7 +20,7 @@ export function registerListener(userName, number, bio) {
         }
 
         try {
-            const registerRes = await register(userName, number, bio);
+            const registerRes = await _register(userName, number, bio);
 
             if (registerRes) {
                 dispatch({type: CONSTANTS.SET_OTP_SENT, payload: true});
@@ -35,7 +35,7 @@ export function registerListener(userName, number, bio) {
 
 export function requestOtp(number) {
     return async dispatch => {
-        const otpRes = await requestOtp(number);
+        const otpRes = await _requestOtp(number);
 
         if (otpRes) {
             dispatch({type: CONSTANTS.SET_OTP_SENT, payload: true});
@@ -53,7 +53,7 @@ export function authListener(number, otp) {
 
         if (remaining >= 1) {
             try {
-                const loginRes = await login(number, otp);
+                const loginRes = await _logIn(number, otp);
 
                 if (loginRes) {
                     dispatch({type: CONSTANTS.SET_TOKEN, payload: loginRes});

@@ -5,6 +5,7 @@ import {compose} from "redux";
 import {connect} from "react-redux";
 import {authListener, requestOtp} from "@redux/state/listener/ListenerState";
 import {useNavigation} from '@react-navigation/native';
+import globalStyles from "@components/globalStyles";
 
 export default compose(
     connect(

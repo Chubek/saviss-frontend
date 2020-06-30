@@ -6,6 +6,7 @@ import {useNavigation} from '@react-navigation/native';
 import Images from "@components/Images";
 import {sendMessage, endSession, messageWatch} from "@redux/state/chat/ChatState";
 import {toast} from "@wrappers/toast";
+import globalStyles from "@components/globalStyles";
 
 export default compose(
     connect(

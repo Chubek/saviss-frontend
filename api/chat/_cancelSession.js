@@ -1,7 +1,7 @@
 import axios from "axios"
 import {toast} from "@wrappers/toast";
 
-export const cancelSession = async (sessionId) => {
+export const _cancelSession = async (sessionId) => {
     try {
         console.log(sessionId);
         await axios.post(`${process.env.SERVER_URL}/poolop/expired/${sessionId}`);

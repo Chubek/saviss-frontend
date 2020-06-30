@@ -6,6 +6,7 @@ import {startSession} from "@redux/state/chat/ChatState";
 import {useNavigation} from '@react-navigation/native';
 import Images from "@components/Images";
 import {toast} from "@wrappers/toast";
+import globalStyles from "@components/globalStyles";
 
 export default compose(
     connect(

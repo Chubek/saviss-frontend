@@ -1,7 +1,7 @@
 import axios from "axios"
 
 
-export const acceptSession = async (sessionId, listenerToken) => {
+export const _acceptSession = async (sessionId, listenerToken) => {
     if (!sessionId) {
         toast("No Session ID!");
         return false;

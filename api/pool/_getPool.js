@@ -1,7 +1,7 @@
 import axios from "axios"
 import {toast} from "@wrappers/toast";
 
-export const getPool = async (listenerToken) => {
+export const _getPool = async (listenerToken) => {
     try {
         const poolRes = await axios.get(`${process.env.SERVER_URL}/pool/get/`, {headers: {"x-auth-token-listener": listenerToken}});
 

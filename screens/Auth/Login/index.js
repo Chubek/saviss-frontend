@@ -1,9 +1,10 @@
 import React from "react";
 import {ActivityIndicator} from "react-native";
 import {Grid, Row} from "react-native-easy-grid";
-import {Button, Input} from "react-native-elements"
+import {Button, Input, Text} from "react-native-elements"
 import loginScreenEnhancer from "./enhancer";
 import globalStyles from "@components/globalStyles";
+
 
 const loginScreen = props => {
     return (
@@ -17,7 +18,7 @@ const loginScreen = props => {
                 {props.otpSent ?
                     <Input style={globalStyles.input} labelStyle={globalStyles.label} maxLength={4}
                            onChangeText={t => props.setOtp(t)}
-                           label="One-Time Password"/> : "Please enter your number"}
+                           label="One-Time Password"/> : <Text>Please enter your number</Text>}
             </Row>
             <Row>
                 {props.loginPressed ? <ActivityIndicator size="small" color="#00ff00"/> :

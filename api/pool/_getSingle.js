@@ -1,7 +1,7 @@
 import axios from "axios";
 import {toast} from "@wrappers/toast";
 
-export const getSingle = async (sessionId, listenerToken) => {
+export const _getSingle = async (sessionId, listenerToken) => {
     try {
         const poolRes = await axios.get(`${process.env.SERVER_URL}/pool/single/${sessionId}`, {headers: {"x-auth-token-listener": listenerToken}});
 

@@ -3,7 +3,7 @@ import axios from "axios"
 import {toast} from "@wrappers/toast";
 
 
-export const startSession = async (seekerNumber, seekerReason) => {
+export const _startSession = async (seekerNumber, seekerReason) => {
     if (!seekerNumber) {
         toast("Number not entered");
         return false;

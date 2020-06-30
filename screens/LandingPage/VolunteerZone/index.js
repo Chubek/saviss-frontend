@@ -8,11 +8,11 @@ const volunteerZoneScreen = props => {
     return (
         <Grid>
             <Row>
-                <Button title="Login" onPress={() => props.onNavigateToLogin}
+                <Button title="Login" onPress={() => props.onNavigateToLogin()}
                         containerStyle={globalStyles.buttonContainerStyle} buttonStyle={globalStyles.buttonStyle}/>
             </Row>
             <Row>
-                <Button title="Register" onPress={() => props.onNavigateToRegister}
+                <Button title="Register" onPress={() => props.onNavigateToRegister()}
                         containerStyle={globalStyles.buttonContainerStyle} buttonStyle={globalStyles.buttonStyle}/>
             </Row>
         </Grid>

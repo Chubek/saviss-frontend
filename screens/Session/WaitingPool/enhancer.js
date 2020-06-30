@@ -7,6 +7,7 @@ import Images from "@components/Images";
 import {getPool, updatePool} from "@redux/state/pool/PoolState";
 import {acceptSession} from "@redux/state/chat/ChatState";
 import {logoutListener} from "@redux/state/listener/ListenerState";
+import globalStyles from "@components/globalStyles";
 
 export default compose(
     connect(

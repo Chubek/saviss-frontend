@@ -5,7 +5,7 @@ import {connect} from "react-redux";
 import {useNavigation} from '@react-navigation/native';
 import Images from "@components/Images";
 import {seekerLounge, cancelSession, startSession} from "@redux/state/chat/ChatState";
-
+import globalStyles from "@components/globalStyles";
 
 export default compose(
     connect(

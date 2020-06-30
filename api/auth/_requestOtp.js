@@ -2,7 +2,7 @@ import axios from "axios"
 
 import {toast} from "@wrappers/toast";
 
-export const requestOtp = async (number) => {
+export const _requestOtp = async (number) => {
     if (!number) {
         toast("No number has been entered");
     }

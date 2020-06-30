@@ -1,10 +1,10 @@
 import * as CONSTANTS from "./ChatConstants";
-import {acceptSession} from "@api/chat/acceptSession";
-import {cancelSession} from "@api/chat/cancelSession";
-import {endSession} from "@api/chat/endSession";
-import {sendMessage} from "@api/chat/sendMessage";
-import {startSession} from "@api/chat/startSession";
-import {checkTime} from "@api/chat/checkTime";
+import {_acceptSession} from "@api/chat/_acceptSession";
+import {_cancelSession} from "@api/chat/_cancelSession";
+import {_endSession} from "@api/chat/_endSession";
+import {_sendMessage} from "@api/chat/_sendMessage";
+import {_startSession} from "@api/chat/_startSession";
+import {_checkTime} from "@api/chat/_checkTime";
 import {toast} from "@wrappers/toast";
 import timer from "react-native-timer";
 import moment from "moment";
@@ -30,7 +30,7 @@ const initialState = {
 export function startSession(seekerNumber, seekerReason) {
     return async dispatch => {
 
-        const startRes = await startSession(seekerNumber, seekerReason);
+        const startRes = await _startSession(seekerNumber, seekerReason);
 
         if (startRes) {
             dispatch({type: CONSTANTS.SET_SESSION_ID, payload: startRes});
@@ -50,7 +50,7 @@ export function startSession(seekerNumber, seekerReason) {
 export function acceptSession(sessionId) {
     return async (dispatch, getState) => {
 
-        const acceptRes = acceptSession(sessionId, getState().listener.token);
+        const acceptRes = _acceptSession(sessionId, getState().listener.token);
 
         if (acceptRes) {
             dispatch({type: CONSTANTS.SET_SESSION_ID, payload: sessionId});
@@ -65,7 +65,7 @@ export function acceptSession(sessionId) {
 export function cancelSession() {
     return async dispatch => {
 
-        const cancelRes = await cancelSession();
+        const cancelRes = await _cancelSession();
 
         if (cancelRes) {
             dispatch({type: CONSTANTS.SET_SESSION_ID, payload: null});
@@ -78,7 +78,7 @@ export function cancelSession() {
 export function endSession() {
     return async (dispatch, getState) => {
 
-        const endRes = await endSession(getState().chat.sessionId);
+        const endRes = await _endSession(getState().chat.sessionId);
 
         if (endRes) {
             dispatch({type: CONSTANTS.SET_SESSION_ID, payload: null});
@@ -98,7 +98,7 @@ export function endSession() {
 export function sendMessage(message, sessionId) {
     return async (dispatch, getState) => {
 
-        return await sendMessage(message, getState().chat.sessionId);
+        return await _sendMessage(message, getState().chat.sessionId);
     }
 }
 
@@ -106,7 +106,7 @@ export function seekerLounge() {
     return async (dispatch, getState) => {
 
         timer.setInterval("checkTimeInterval", async () => {
-            await checkTime(getState().chat.startTime, getState().chat.sessionId)
+            await _checkTime(getState().chat.startTime, getState().chat.sessionId)
         }, 5000);
 
         const channel = realtime.channels.get(getState().chat.sessionId);

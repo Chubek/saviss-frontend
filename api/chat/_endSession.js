@@ -1,7 +1,7 @@
 import axios from "axios"
 import {toast} from "@wrappers/toast";
 
-export const endSession = async (sessionId) => {
+export const _endSession = async (sessionId) => {
     try {
         const endRes = await axios.put(`${process.env.SERVER_URL}/session/disconnect/${sessionId}`);
         await axios.post(`${process.env.SERVER_URL}/chat/leave`, {}, {headers: {"x-session-id": sessionId}});

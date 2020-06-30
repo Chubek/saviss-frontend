@@ -4,7 +4,7 @@ import {ImageBackground} from "react-native";
 import {compose} from "redux";
 import {connect} from "react-redux";
 import {useNavigation} from '@react-navigation/native';
-
+import globalStyles from "@components/globalStyles";
 
 export default compose(connect(state => ({token: state.listener.token})),
     Component => props => {

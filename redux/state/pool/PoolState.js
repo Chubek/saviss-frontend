@@ -1,7 +1,7 @@
 import * as CONSTANTS from "./PoolConstants";
 import {realtime} from "@redux/state/chat/ChatState";
-import {getPool} from "@api/pool/getPool";
-import {getSingle} from "@api/pool/getSingle";
+import {_getPool} from "@api/pool/_getPool";
+import {_getSingle} from "@api/pool/_getSingle";
 import {toast} from "@wrappers/toast";
 
 const initialState = {
@@ -11,7 +11,7 @@ const initialState = {
 export function getPool() {
     return async (dispatch, getState) => {
 
-        const poolRes = await getPool(getState().listener.token);
+        const poolRes = await _getPool(getState().listener.token);
 
         if (poolRes) {
             dispatch({type: CONSTANTS.SET_POOL, payload: poolRes})
@@ -33,7 +33,7 @@ export function updatePool() {
 
             channel.subscribe("entered", async (message) => {
                 const data = JSON.parse(message.data);
-                const poolRes = await getSingle(data.sessionId, getState().listener.token);
+                const poolRes = await _getSingle(data.sessionId, getState().listener.token);
 
                 if (poolRes) {
                     dispatch({type: CONSTANTS.UPDATE_POOL, payload: poolRes.data.poolSingle});
