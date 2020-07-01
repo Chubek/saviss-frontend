@@ -1,6 +1,6 @@
 import axios from "axios"
 import {toast} from "@wrappers/toast";
-import {Constants.manifest.extra.serverUrl} from "react-native-dotenv";
+import Constants from "expo-constants";
 
 export const _getPool = async (listenerToken) => {
     try {

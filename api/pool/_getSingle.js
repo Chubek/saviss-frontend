@@ -1,5 +1,5 @@
 import axios from "axios";
-import {Constants.manifest.extra.serverUrl} from "react-native-dotenv";
+import Constants from "expo-constants";
 
 export const _getSingle = async (sessionId, listenerToken) => {
     try {

@@ -54,7 +54,7 @@ export default compose(
 
                 Permissions.askAsync(Permissions.NOTIFICATIONS).then(status => {
                     if (status.toString() === 'granted') {
-                        Notifications.getDevicePushTokenAsync({})
+                        Notifications.getExpoPushTokenAsync()
                             .then(token => {
                                 setPushToken(token.toString);
                             })
