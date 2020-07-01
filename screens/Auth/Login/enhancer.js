@@ -48,7 +48,7 @@ export default compose(
                 navigation.navigate("BannedScreen");
             }
 
-            props.getPushToken();
+            props.getPushToken().done();
         })
 
 
