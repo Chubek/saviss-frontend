@@ -42,11 +42,13 @@ export function updatePool() {
                 const poolRes = await _getSingle(data.sessionId, getState().listener.number);
                 const ignoredNumbers = await _getIgnored(getState().listener.number);
 
+                let isIgnored = false;
+
                 if (ignoredNumbers.includes(poolRes.seekerNumber)) {
-                    return false;
+                    isIgnored = true;
                 }
 
-                if (poolRes) {
+                if (poolRes && !isIgnored) {
                     dispatch({type: CONSTANTS.UPDATE_POOL, payload: poolRes.data.poolSingle});
 
                     if (!getState().chat.isChatting) {
