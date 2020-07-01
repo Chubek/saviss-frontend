@@ -16,7 +16,7 @@ export default styles = StyleSheet.create({
     label: {
         color: "#582630",
         textShadowColor: "#F1A66A",
-        textShadowOffset: { width: -1, height: 1 },
+        textShadowOffset: {width: -1, height: 1},
         textShadowRadius: 13,
     },
     buttonContainerStyle: {
@@ -29,4 +29,10 @@ export default styles = StyleSheet.create({
         backgroundColor: "#124",
         borderRadius: 20,
     },
+    chatHeader: {
+        backgroundColor: "#f01"
+    },
+    adSpace: {
+        backgroundColor: "#f12"
+    }
 });

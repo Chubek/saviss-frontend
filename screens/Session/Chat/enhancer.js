@@ -4,7 +4,8 @@ import {compose} from "redux";
 import {connect} from "react-redux";
 import {useNavigation} from '@react-navigation/native';
 import Images from "@components/Images";
-import {sendMessage, endSession, messageWatch} from "@redux/state/chat/ChatState";
+import {ignorePartner} from "@redux/state/listener/ListenerState";
+import {sendMessage, endSession, messageWatch, reportChat} from "@redux/state/chat/ChatState";
 import {toast} from "@wrappers/toast";
 import globalStyles from "@components/globalStyles";
 
@@ -17,8 +18,10 @@ export default compose(
         }),
         dispatch => ({
             sendMessage: (message) => dispatch(sendMessage(message)),
-            endSession: () => dispatch(endSession()),
-            messageWatch: () => dispatch(messageWatch())
+            endSession: (star, thumbs) => dispatch(endSession(star, thumbs)),
+            messageWatch: () => dispatch(messageWatch()),
+            ignorePartner: () => dispatch(ignorePartner()),
+            reportChat: (reason) => dispatch(reportChat(reason))
         })
     ),
     Component => props => {
@@ -26,6 +29,18 @@ export default compose(
 
         const [sendPushed, setSendPushed] = useState(false);
         const [endPressed, setEndPressed] = useState(false);
+        const [ignorePressed, setIgnorePressed] = useState(false);
+        const [overlay, setOverlay] = useState(false);
+        const [reason, setReason] = useState();
+        const [thumbs, setThumbs] = useState(false);
+        const [star, setStar] = useState("gold");
+        const [feedback, setFeedback] = useState(false);
+
+        const onReportChat = async () => {
+            await props.reportChat(reason);
+            props.endSession();
+            navigation.navigate("FrontPageScreen");
+        }
 
         const onSubmitMessage = async (message) => {
             setSendPushed(true);
@@ -35,6 +50,13 @@ export default compose(
 
         const onEndSession = async () => {
             setEndPressed(true);
+            await props.endSession(star, thumbs);
+            navigation.navigate("FrontPageScreen");
+        }
+
+        const onIgnorePartner = async () => {
+            setIgnorePressed(true);
+            await props.ignorePartner();
             await props.endSession();
             navigation.navigate("FrontPageScreen");
         }
@@ -62,7 +84,23 @@ export default compose(
 
         return (
             <ImageBackground source={Images.background} style={globalStyles.bg}>
-                <Component {...props} {...{onEndSession, onSubmitMessage, endPressed, sendPushed}} />
+                <Component {...props} {...{
+                    onEndSession,
+                    onSubmitMessage,
+                    ignorePressed,
+                    onIgnorePartner,
+                    endPressed,
+                    sendPushed,
+                    overlay,
+                    setOverlay,
+                    setReason,
+                    thumbs,
+                    star,
+                    setThumbs,
+                    setStar,
+                    feedback,
+                    setFeedback
+                }} />
             </ImageBackground>
         )
 

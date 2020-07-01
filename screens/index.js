@@ -8,7 +8,7 @@ import VolunteerZoneScreen from "./LandingPage/VolunteerZone";
 import ChatScreen from "./Session/Chat";
 import SeekerLoungeScreen from "./Session/SeekerLounge";
 import WaitingPoolScreen from "./Session/WaitingPool";
-
+import BannedScreen from "@components/BannedScreen";
 
 const Stack = createStackNavigator();
 
@@ -50,6 +50,11 @@ export default function NavigationStack() {
                 <Stack.Screen
                     name="SeekerLoungeScreen"
                     component={SeekerLoungeScreen}
+                    options={{headerShown: false}}
+                />
+                <Stack.Screen
+                    name="BannedScreen"
+                    component={BannedScreen}
                     options={{headerShown: false}}
                 />
             </Stack.Navigator>

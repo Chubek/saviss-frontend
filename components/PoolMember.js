@@ -4,7 +4,7 @@ import {Grid, Row, Col} from "react-native-easy-grid"
 import moment from "moment";
 import timer from "react-native-timer";
 
-export default poolMember = props => {
+const poolMember = props => {
 
     const calcTimeDiff = (givenTime) => {
         return moment().diff(givenTime).format("h:mm:ss");
@@ -31,3 +31,5 @@ export default poolMember = props => {
         </Grid>
     )
 }
+
+export default poolMember;

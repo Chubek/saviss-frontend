@@ -5,6 +5,7 @@ import {_endSession} from "@api/chat/_endSession";
 import {_sendMessage} from "@api/chat/_sendMessage";
 import {_startSession} from "@api/chat/_startSession";
 import {_checkTime} from "@api/chat/_checkTime";
+import {_report} from "@api/auth/_report";
 import {toast} from "@wrappers/toast";
 import timer from "react-native-timer";
 import moment from "moment";
@@ -50,12 +51,12 @@ export function startSession(seekerNumber, seekerReason) {
 export function acceptSession(sessionId) {
     return async (dispatch, getState) => {
 
-        const acceptRes = _acceptSession(sessionId, getState().listener.token);
+        const acceptRes = _acceptSession(sessionId, getState().listener.number);
 
         if (acceptRes) {
             dispatch({type: CONSTANTS.SET_SESSION_ID, payload: sessionId});
             dispatch({type: CONSTANTS.SET_NAME, payload: "Listener"});
-            dispatch({ type: CONSTANTS.SET_IS_CHATTING, payload: true });
+            dispatch({type: CONSTANTS.SET_IS_CHATTING, payload: true});
 
         }
 
@@ -75,10 +76,10 @@ export function cancelSession() {
 
 }
 
-export function endSession() {
+export function endSession(star, thumbs) {
     return async (dispatch, getState) => {
 
-        const endRes = await _endSession(getState().chat.sessionId);
+        const endRes = await _endSession(getState().chat.sessionId, star, thumbs);
 
         if (endRes) {
             dispatch({type: CONSTANTS.SET_SESSION_ID, payload: null});
@@ -86,7 +87,7 @@ export function endSession() {
             dispatch({type: CONSTANTS.SET_MESSAGES, payload: null});
             dispatch({type: CONSTANTS.SET_NAME, payload: null});
             dispatch({type: CONSTANTS.SET_START_TIME, payload: null})
-            dispatch({ type: CONSTANTS.SET_IS_CHATTING, payload: false });
+            dispatch({type: CONSTANTS.SET_IS_CHATTING, payload: false});
             return true;
         }
     }
@@ -114,7 +115,7 @@ export function seekerLounge() {
         channel.subscribe("accepted", (message) => {
             dispatch({type: CONSTANTS.SET_ACCEPTED_BY_LISTENER, payload: true});
             dispatch({type: CONSTANTS.SET_NAME, payload: "Seeker"});
-            dispatch({ type: CONSTANTS.SET_IS_CHATTING, payload: true });
+            dispatch({type: CONSTANTS.SET_IS_CHATTING, payload: true});
             toast("Session was accepted");
             return true;
         });
@@ -145,6 +146,17 @@ export function messageWatch() {
             throw new Error(e);
         }
     };
+}
+
+
+export function reportChat(reason) {
+    return async (dispatch, getState) => {
+        const reportRes = await _report(getState().chat.sessionId, getState().chat.user, reason);
+
+        if (reportRes) {
+            return true;
+        }
+    }
 }
 
 

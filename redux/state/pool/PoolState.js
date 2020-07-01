@@ -2,7 +2,9 @@ import * as CONSTANTS from "./PoolConstants";
 import {realtime} from "@redux/state/chat/ChatState";
 import {_getPool} from "@api/pool/_getPool";
 import {_getSingle} from "@api/pool/_getSingle";
+import {_getIgnored} from "@api/auth/_getIgnored";
 import {toast} from "@wrappers/toast";
+import _ from "lodash";
 
 const initialState = {
     pool: [],
@@ -11,7 +13,11 @@ const initialState = {
 export function getPool() {
     return async (dispatch, getState) => {
 
-        const poolRes = await _getPool(getState().listener.token);
+        let poolRes = await _getPool(getState().listener.number);
+
+        const ignoredNumbers = await _getIgnored(getState().listener.number);
+
+        poolRes = _.filter(poolRes, poolMember => !ignoredNumbers.includes(poolMember.seekerNumber));
 
         if (poolRes) {
             dispatch({type: CONSTANTS.SET_POOL, payload: poolRes})
@@ -33,7 +39,12 @@ export function updatePool() {
 
             channel.subscribe("entered", async (message) => {
                 const data = JSON.parse(message.data);
-                const poolRes = await _getSingle(data.sessionId, getState().listener.token);
+                const poolRes = await _getSingle(data.sessionId, getState().listener.number);
+                const ignoredNumbers = await _getIgnored(getState().listener.number);
+
+                if (ignoredNumbers.includes(poolRes.seekerNumber)) {
+                    return false;
+                }
 
                 if (poolRes) {
                     dispatch({type: CONSTANTS.UPDATE_POOL, payload: poolRes.data.poolSingle});

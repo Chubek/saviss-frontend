@@ -15,7 +15,7 @@ export const _startSession = async (seekerNumber, seekerReason) => {
     }
 
     try {
-        const sessionRes = await axios.post(`${process.env.SERVER_URL}/session/createSession`, {seekerNumber, seekerReason});
+        const sessionRes = await axios.post(`${process.env.SERVER_URL}/session/startSession`, {seekerNumber, seekerReason});
 
         if (sessionRes.status === 200) {
             await axios.post(`${process.env.SERVER_URL}/poolop/entered/${sessionRes.data.sessionId}`);

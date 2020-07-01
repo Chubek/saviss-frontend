@@ -15,34 +15,29 @@ export const _logIn = async (number, otp) => {
             return false;
         }
 
-        const authRes = await axios.post(`${process.env.SERVER_URL}/listener/auth`, {
+        const authRes = await axios.post(`${process.env.SERVER_URL}/user/auth`, {
             number,
-            password: otp
+            otp
         });
 
 
         if (authRes.status === 200) {
-            return authRes.data.token;
+            return number;
         }
+
     } catch (e) {
+        if (e.response.status === 404) {
+            toast("Number not found");
+        }
         if (e.response.status === 401) {
-            if (e.response.data.notSent === "loginString") {
-                toast("Number not sent!");
-                return false;
-            } else if (e.response.data.notSent === "password") {
-                toast("OTP not sent!");
-                return false;
-            }
-        } else if (e.response.status === 404) {
-            if (!e.response.data.isUser) {
-                toast("No such user!");
-                return false;
-            }
-        } else if (e.response.status === 500) {
-            toast("OTP expired!");
-            return false;
-        } else if (e.response.status === 403) {
-            throw new Error("OTPINCORRECT")
+            throw new Error("OTPEXPIRED");
+        }
+        if (e.response.status === 403) {
+            throw new Error("OTPINCORRECT");
+        }
+        if (e.response.status === 407) {
+            toast("You are banned!");
+            throw new Error("USERBANNED")
         }
     }
 
