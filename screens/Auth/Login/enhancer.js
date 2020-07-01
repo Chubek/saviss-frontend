@@ -8,6 +8,7 @@ import {useNavigation} from '@react-navigation/native';
 import globalStyles from "@components/globalStyles";
 import {Notifications} from 'expo';
 import Permissions from "expo-permissions"
+import Constants from "expo-constants";
 import {toast} from "@wrappers/toast";
 
 export default compose(
@@ -49,17 +50,20 @@ export default compose(
                 navigation.navigate("BannedScreen");
             }
 
-            Permissions.askAsync(Permissions.NOTIFICATIONS).then(status => {
-                if (status === 'granted') {
-                    Notifications.getDevicePushTokenAsync()
-                        .then(token => {
-                            setPushToken(token.toString);
-                        })
-                        .catch(err => {
-                            toast(err.toString());
-                        });
-                }
-            })
+            if (Constants.isDevice) {
+
+                Permissions.askAsync(Permissions.NOTIFICATIONS).then(status => {
+                    if (status.toString() === 'granted') {
+                        Notifications.getDevicePushTokenAsync({})
+                            .then(token => {
+                                setPushToken(token.toString);
+                            })
+                            .catch(err => {
+                                toast(err.toString());
+                            });
+                    }
+                })
+            }
         })
 
         return (
