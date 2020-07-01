@@ -3,19 +3,20 @@ import {_logIn} from "@api/auth/_logIn";
 import {_requestOtp} from "@api/auth/_requestOtp";
 import {_ignore} from "@api/auth/_ignore";
 import {toast} from "@wrappers/toast";
-import removedModule from "expo/build/removedModule";
+import {_getPushToken} from "@api/auth/_getPushToken";
 
 const initialState = {
     number: null,
     otpSentNum: 3,
     otpSent: false,
-    banned: false
+    banned: false,
+    pushToken: null
 
 }
 
-export function requestOtp(number, pushToken) {
-    return async dispatch => {
-        const otpRes = await _requestOtp(number, pushToken);
+export function requestOtp(number) {
+    return async (dispatch, getState) => {
+        const otpRes = await _requestOtp(number, getState().listener.pushToken);
 
         if (otpRes) {
             dispatch({type: CONSTANTS.SET_OTP_SENT, payload: true});
@@ -24,6 +25,16 @@ export function requestOtp(number, pushToken) {
 
     }
 
+}
+
+export function getPushToken() {
+    return async dispatch => {
+        const pushRes = await _getPushToken();
+
+        if (pushRes) {
+            dispatch({type: CONSTANTS.SET_PUSH_TOKEN, payload: pushRes});
+        }
+    }
 }
 
 
@@ -112,6 +123,11 @@ export default function ListenerStateReducer(
             return {
                 ...state,
                 banned: action.payload
+            }
+        case CONSTANTS.SET_PUSH_TOKEN:
+            return {
+                ...state,
+                pushToken: action.payload
             }
         default:
             return state;

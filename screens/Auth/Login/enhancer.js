@@ -3,13 +3,10 @@ import Images from "@components/Images";
 import {ImageBackground} from "react-native";
 import {compose} from "redux";
 import {connect} from "react-redux";
-import {authListener, requestOtp} from "@redux/state/listener/ListenerState";
+import {authListener, requestOtp, getPushToken} from "@redux/state/listener/ListenerState";
 import {useNavigation} from '@react-navigation/native';
 import globalStyles from "@components/globalStyles";
-import {Notifications} from 'expo';
-import Permissions from "expo-permissions"
-import Constants from "expo-constants";
-import {toast} from "@wrappers/toast";
+
 
 export default compose(
     connect(
@@ -20,7 +17,8 @@ export default compose(
         }),
         dispatch => ({
             authListener: (number, otp) => dispatch(authListener(number, otp)),
-            requestOtp: (number) => dispatch(requestOtp(number))
+            requestOtp: (number) => dispatch(requestOtp(number)),
+            getPushToken: () => dispatch(getPushToken())
         })
     ),
     Component => props => {
@@ -32,7 +30,7 @@ export default compose(
         const [pushToken, setPushToken] = useState('');
 
         const onRequestOtp = async () => {
-            await props.requestOtp(number, pushToken);
+            await props.requestOtp(number);
         }
 
         const onLogin = async () => {
@@ -50,21 +48,9 @@ export default compose(
                 navigation.navigate("BannedScreen");
             }
 
-            if (Constants.isDevice) {
-
-                Permissions.askAsync(Permissions.NOTIFICATIONS).then(status => {
-                    if (status.toString() === 'granted') {
-                        Notifications.getExpoPushTokenAsync()
-                            .then(token => {
-                                setPushToken(token.toString);
-                            })
-                            .catch(err => {
-                                toast(err.toString());
-                            });
-                    }
-                })
-            }
+            props.getPushToken();
         })
+
 
         return (
             <ImageBackground source={Images.background} style={globalStyles.bg}>
