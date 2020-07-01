@@ -11,18 +11,19 @@ const feedbackComponent = props => {
                 <Text>Rate your chat. Your partner will be notified of the results.</Text>
             </Row>
             <Row>
-                <CheckBox checked={props.thumbs} checkedIcon={{type: "font-awesome", name: "thumbs-down",}} onPress={() => props.setThumbs(!thumbs)}
+                <CheckBox checked={props.thumbs} checkedIcon={{type: "font-awesome", name: "thumbs-down",}}
+                          onPress={() => props.setThumbs(!thumbs)}
                           uncheckedIcon={{type: "font-awesome", name: "thumbs-up"}}/>
             </Row>
             <Row>
                 <Col>
-                    <CheckBox checked={} title="Gold Star" onPress={() => props.setStar("gold")} />
+                    <CheckBox checked={props.star} title="Gold Star" onPress={() => props.setStar("gold")}/>
                 </Col>
                 <Col>
-                    <CheckBox checked={} title="Silver Star" onPress={() => props.setStar("silver")} />
+                    <CheckBox checked={props.star} title="Silver Star" onPress={() => props.setStar("silver")}/>
                 </Col>
                 <Col>
-                    <CheckBox checked={} title="Bronze Star" onPress={() => props.setStar("bronze")} />
+                    <CheckBox checked={props.star} title="Bronze Star" onPress={() => props.setStar("bronze")}/>
                 </Col>
             </Row>
             <Row>

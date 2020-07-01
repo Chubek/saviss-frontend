@@ -4,7 +4,6 @@ import {NavigationContainer} from "@react-navigation/native";
 import LoginScreen from "./Auth/Login";
 import FrontPageScreen from "./LandingPage/FrontPage";
 import StartSessionScreen from "./LandingPage/StartSession";
-import VolunteerZoneScreen from "./LandingPage/VolunteerZone";
 import ChatScreen from "./Session/Chat";
 import SeekerLoungeScreen from "./Session/SeekerLounge";
 import WaitingPoolScreen from "./Session/WaitingPool";
@@ -26,12 +25,6 @@ export default function NavigationStack() {
                     component={LoginScreen}
                     options={{title: "Login as Listener"}}
                 />
-
-                <Stack.Screen
-                    name="VolunteerZoneScreen"
-                    component={VolunteerZoneScreen}
-                    options={{title: "Volunteer Zone"}}
-                />
                 <Stack.Screen
                     name="ChatScreen"
                     component={ChatScreen}
@@ -45,7 +38,7 @@ export default function NavigationStack() {
                 <Stack.Screen
                     name="UserPanelScreen"
                     component={WaitingPoolScreen}
-                    options={{title: "Volunteer Panel"}}
+                    options={{title: "Waiting Pool"}}
                 />
                 <Stack.Screen
                     name="SeekerLoungeScreen"

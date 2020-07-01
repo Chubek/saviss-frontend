@@ -1,6 +1,5 @@
 import * as CONSTANTS from "./ListenerConstants";
 import {_logIn} from "@api/auth/_logIn";
-import {_register} from "@api/auth/_register";
 import {_requestOtp} from "@api/auth/_requestOtp";
 import {_ignore} from "@api/auth/_ignore";
 import {toast} from "@wrappers/toast";
