@@ -24,6 +24,9 @@ const chatScreen = props => {
                 <Button title="Report" onPress={() => props.setOverlay(true)}/>
             </Row>
             <Row>
+                <Button title="End Session" onPress={() => props.setFeedback(true)}/>
+            </Row>
+            <Row>
                 <GiftedChat
                     messages={props.messages}
                     onSend={messages => props.onSubmitMessage(messages)}

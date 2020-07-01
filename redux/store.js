@@ -27,7 +27,7 @@ const composeEnhancers =
 const enhancer = composeEnhancers(...enhancers);
 
 const persistConfig = {
-  key: "root-v00",
+  key: "root-v01",
   storage: AsyncStorage,
   blacklist: [],
 };
