@@ -1,9 +1,9 @@
 import axios from "axios";
-import {toast} from "@wrappers/toast";
+import {Constants.manifest.extra.serverUrl} from "react-native-dotenv";
 
 export const _getSingle = async (sessionId, listenerToken) => {
     try {
-        const poolRes = await axios.get(`${process.env.SERVER_URL}/pool/single/${sessionId}`, {headers: {"x-auth-token-listener": listenerToken}});
+        const poolRes = await axios.get(`${Constants.manifest.extra.serverUrl}/pool/single/${sessionId}`, {headers: {"x-auth-token-listener": listenerToken}});
 
         if (poolRes.status === 200 || poolRes.status === 304) {
             return poolRes.data.poolSingle;

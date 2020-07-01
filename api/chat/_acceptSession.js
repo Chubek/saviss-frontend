@@ -1,5 +1,6 @@
 import axios from "axios"
 import {toast} from "@wrappers/toast";
+import Constants from "expo-constants";
 
 export const _acceptSession = async (sessionId, listenerNumber) => {
     if (!sessionId) {
@@ -13,14 +14,14 @@ export const _acceptSession = async (sessionId, listenerNumber) => {
     }
 
     try {
-        const acceptRes = await axios.put(`${process.env.SERVER_URL}/session/acceptSession`,
+        const acceptRes = await axios.put(`${Constants.manifest.extra.serverUrl}/session/acceptSession`,
             {sessionId, listenerNumber});
-        await axios.post(`${process.env.SERVER_URL}/chat/accept`, {listenerNumber}, {
+        await axios.post(`${Constants.manifest.extra.serverUrl}/chat/accept`, {listenerNumber}, {
             headers: {
                 "x-session-id": sessionId
             }
         });
-        await axios.post(`${process.env.SERVER_URL}/poolop/accepted/${sessionId}`);
+        await axios.post(`${Constants.manifest.extra.serverUrl}/poolop/accepted/${sessionId}`);
 
         if (acceptRes.status === 200) {
             return true;

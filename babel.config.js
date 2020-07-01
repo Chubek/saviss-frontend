@@ -3,9 +3,8 @@ module.exports = function (api) {
     return {
         presets: ['babel-preset-expo'],
         plugins: [
-            "inline-dotenv",
             [
-            "module-resolver",
+                "module-resolver",
                 {
                     "alias": {
                         "@components": "./components",
@@ -18,7 +17,7 @@ module.exports = function (api) {
                         "@assets": "./assets"
                     }
                 }
-                ]
+            ]
         ],
     };
 

@@ -13,6 +13,9 @@ web-build/
 .DS_Store
 
 
+
+app.json
+
 # Created by https://www.toptal.com/developers/gitignore/api/reactnative,intellij,intellij+all
 # Edit at https://www.toptal.com/developers/gitignore?templates=reactnative,intellij,intellij+all
 

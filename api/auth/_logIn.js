@@ -1,5 +1,6 @@
 import axios from "axios"
 import {toast} from "@wrappers/toast";
+import Constants from "expo-constants";
 
 export const _logIn = async (number, otp) => {
     try {
@@ -15,7 +16,9 @@ export const _logIn = async (number, otp) => {
             return false;
         }
 
-        const authRes = await axios.post(`${process.env.SERVER_URL}/user/auth`, {
+        console.log("serverUrl", Constants.manifest.extra.serverUrl);
+
+        const authRes = await axios.post(`${Constants.manifest.extra.serverUrl}/user/auth`, {
             number,
             otp
         });

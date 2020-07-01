@@ -1,5 +1,5 @@
-import axios from "axios"
-
+import axios from "axios";
+import Constants from "expo-constants";
 import {toast} from "@wrappers/toast";
 
 export const _requestOtp = async (number, pushToken) => {
@@ -9,7 +9,7 @@ export const _requestOtp = async (number, pushToken) => {
 
     try {
         const otpRes = await axios.put(
-            `${process.env.SERVER_URL}/user/requestOtp`,
+            `${Constants.manifest.extra.serverUrl}/user/requestOtp`,
             {number, isTest: "true", pushToken}
             //change "true" to "false" in production
         );

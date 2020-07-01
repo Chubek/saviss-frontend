@@ -9,11 +9,12 @@ import {_report} from "@api/auth/_report";
 import {toast} from "@wrappers/toast";
 import timer from "react-native-timer";
 import moment from "moment";
+import Constants from "expo-constants";
 
 import * as Ably from "ably";
 
 
-export const realtime = new Ably.Realtime(process.env.ABLY_API);
+export const realtime = new Ably.Realtime(Constants.manifest.extra.ablyAPI);
 
 
 const initialState = {

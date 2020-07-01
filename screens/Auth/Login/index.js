@@ -10,7 +10,7 @@ const loginScreen = props => {
     return (
         <Grid>
             <Row>
-                <Input style={globalStyles.input} labelStyle={globalStyles.label} maxLength={13}
+                <Input style={globalStyles.input} labelStyle={globalStyles.label} maxLength={15}
                        onChangeText={t => props.setNumber(t)}
                        label="Number"/>
             </Row>

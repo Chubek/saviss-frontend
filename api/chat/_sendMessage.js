@@ -1,8 +1,9 @@
 import axios from "axios"
+import Constants from "expo-constants";
 
 export const _sendMessage = async (message, sessionId) => {
     try {
-        const sendRes = await axios.post(`${process.env.SERVER_URL}/chat/sendMessage`, {
+        const sendRes = await axios.post(`${Constants.manifest.extra.serverUrl}/chat/sendMessage`, {
             data: JSON.stringify(message)
         }, {headers: {"x-session-id": sessionId}});
 

@@ -1,6 +1,7 @@
 import axios from "axios"
 
 import {toast} from "@wrappers/toast";
+import Constants from "expo-constants";
 
 
 export const _startSession = async (seekerNumber, seekerReason) => {
@@ -15,10 +16,10 @@ export const _startSession = async (seekerNumber, seekerReason) => {
     }
 
     try {
-        const sessionRes = await axios.post(`${process.env.SERVER_URL}/session/startSession`, {seekerNumber, seekerReason});
+        const sessionRes = await axios.post(`${Constants.manifest.extra.serverUrl}/session/startSession`, {seekerNumber, seekerReason});
 
         if (sessionRes.status === 200) {
-            await axios.post(`${process.env.SERVER_URL}/poolop/entered/${sessionRes.data.sessionId}`);
+            await axios.post(`${Constants.manifest.extra.serverUrl}/poolop/entered/${sessionRes.data.sessionId}`);
             return sessionRes.data.sessionId;
         }
 
