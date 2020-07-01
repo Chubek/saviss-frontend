@@ -94,6 +94,7 @@ export default compose(
                     overlay,
                     setOverlay,
                     setReason,
+                    onReportChat,
                     thumbs,
                     star,
                     setThumbs,

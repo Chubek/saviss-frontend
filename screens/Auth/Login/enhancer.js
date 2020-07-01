@@ -15,7 +15,7 @@ export default compose(
         state => ({
             otpSent: state.listener.otpSent,
             otpSentNum: state.listener.otpSentNum,
-            banned: state.banned
+            banned: state.listener.banned
         }),
         dispatch => ({
             authListener: (number, otp) => dispatch(authListener(number, otp)),

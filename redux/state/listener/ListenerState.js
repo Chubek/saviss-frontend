@@ -36,7 +36,7 @@ export function authListener(number, otp) {
                 const loginRes = await _logIn(number, otp);
 
                 if (loginRes) {
-                    dispatch({type: CONSTANTS.SET_NUMBER, payload: loginRes});
+                    dispatch({type: CONSTANTS.SET_NUMBER, payload: number});
                     return true;
                 }
             } catch (e) {
@@ -108,6 +108,11 @@ export default function ListenerStateReducer(
                 ...state,
                 token: action.payload
             };
+        case CONSTANTS.SET_BANNED:
+            return {
+                ...state,
+                banned: action.payload
+            }
         default:
             return state;
     }

@@ -11,9 +11,6 @@ const waitingPoolScreen = props => {
     return (
         <Grid>
             <Row>
-                <Button title="Logout" onPress={() => props.onLogoutListener()}/>
-            </Row>
-            <Row>
                 {props.getPushed ? <ActivityIndicator size="small" color="#00ff00"/> :
                     <Button containerStyle={globalStyles.buttonContainerStyle} buttonStyle={globalStyles.buttonStyle}
                             disabled={props.getPushed} title="Update Pool" onPress={() => props.onGetPool()}/>}

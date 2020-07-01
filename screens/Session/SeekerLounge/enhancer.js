@@ -30,7 +30,7 @@ export default compose(
                 navigation.navigate("FrontPageScreen");
             }
 
-            setCancelPushed(true);
+            setCancelPushed(false);
         }
 
         useEffect(() => {

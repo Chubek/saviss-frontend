@@ -17,7 +17,7 @@ const reportChatComponent = props => {
                 </Col>
                 <Col>
                     <Button title="Cancel" containerStyle={globalStyles.buttonContainerStyle}
-                            buttonStyle={globalStyles.buttonStyle} onPress={props.setOverlay()}/>
+                            buttonStyle={globalStyles.buttonStyle} onPress={props.setOverlay(false)}/>
                 </Col>
             </Row>
         </Grid>

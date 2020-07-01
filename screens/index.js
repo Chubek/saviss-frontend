@@ -23,7 +23,7 @@ export default function NavigationStack() {
                 <Stack.Screen
                     name="LoginScreen"
                     component={LoginScreen}
-                    options={{title: "Login as Listener"}}
+                    options={{title: "Login"}}
                 />
                 <Stack.Screen
                     name="ChatScreen"

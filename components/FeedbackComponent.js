@@ -12,7 +12,7 @@ const feedbackComponent = props => {
             </Row>
             <Row>
                 <CheckBox checked={props.thumbs} checkedIcon={{type: "font-awesome", name: "thumbs-down",}}
-                          onPress={() => props.setThumbs(!thumbs)}
+                          onPress={() => props.setThumbs(!props.thumbs)}
                           uncheckedIcon={{type: "font-awesome", name: "thumbs-up"}}/>
             </Row>
             <Row>

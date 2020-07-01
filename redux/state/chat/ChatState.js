@@ -64,9 +64,9 @@ export function acceptSession(sessionId) {
 }
 
 export function cancelSession() {
-    return async dispatch => {
+    return async (dispatch, getState) => {
 
-        const cancelRes = await _cancelSession();
+        const cancelRes = await _cancelSession(getState().chat.sessionId);
 
         if (cancelRes) {
             dispatch({type: CONSTANTS.SET_SESSION_ID, payload: null});

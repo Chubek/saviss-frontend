@@ -30,6 +30,7 @@ export const _logIn = async (number, otp) => {
             toast("Number not found");
         }
         if (e.response.status === 401) {
+            toast("OTP expired!")
             throw new Error("OTPEXPIRED");
         }
         if (e.response.status === 403) {
