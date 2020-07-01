@@ -20,7 +20,7 @@ export default compose(
         }
 
         const onNavigateToWaitingPool = () => {
-            navigation.navigate("StartSessionScreen")
+            navigation.navigate("WaitingPoolScreen")
         }
 
         const onNavigateToDonate = () => {
