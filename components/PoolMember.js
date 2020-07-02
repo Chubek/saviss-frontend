@@ -7,7 +7,8 @@ import timer from "react-native-timer";
 const poolMember = props => {
 
     const calcTimeDiff = (givenTime) => {
-        return moment().diff(givenTime).format("h:mm:ss");
+        const millis = moment().diff(props.requestedAt);
+        return moment.utc(millis).format("h:mm:ss");
     }
 
     return (
@@ -19,9 +20,7 @@ const poolMember = props => {
             </Row>
             <Row>
                 <Col>
-                    <Text h6>{timer.setInterval("time-difference", () => {
-                        calcTimeDiff(props.requestedAt)
-                    }, 1000)}</Text>
+                    <Text h6>{timer.setInterval("time-difference", calcTimeDiff, 1000)}</Text>
                 </Col>
                 <Col>
                     <Button title="Accept"

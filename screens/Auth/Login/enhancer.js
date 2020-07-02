@@ -28,10 +28,11 @@ export default compose(
         const [loginPressed, setLoginPressed] = useState(false);
         const [number, setNumber] = useState();
         const [otp, setOtp] = useState();
-        const [pushToken, setPushToken] = useState('');
 
         const onRequestOtp = async () => {
+            setLoginPressed(true);
             await props.requestOtp(number);
+            setLoginPressed(false);
         }
 
         const onLogin = async () => {

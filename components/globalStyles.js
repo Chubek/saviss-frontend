@@ -34,5 +34,8 @@ export default styles = StyleSheet.create({
     },
     adSpace: {
         backgroundColor: "#f12"
+    },
+    waitingTextStyle: {
+        color: "#fff"
     }
 });

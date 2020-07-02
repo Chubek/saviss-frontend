@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "247Buddy-Rewrite-Refresh-Canary",
-    "slug": "247buddy-rewrite-refresh-canary",
+    "name": "247Buddy-Rewrite",
+    "slug": "247buddy-rewrite",
     "extra": {
       "serverUrl": "https://demo-247buddy.herokuapp.com",
       "ablyAPI": "E1CEFA.1C9wKg:UtJN7HMbbJlD6PJk"
@@ -26,6 +26,6 @@
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "description": ""
+    "description": "A chat application for those who feel blue."
   }
 }

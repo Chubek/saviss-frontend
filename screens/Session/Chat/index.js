@@ -2,7 +2,6 @@ import React from "react";
 import {Grid, Row} from "react-native-easy-grid";
 import {Button, Overlay, Text} from "react-native-elements";
 import chatEnhancer from "./enhancer";
-import {ActivityIndicator} from "react-native";
 import {GiftedChat} from "react-native-gifted-chat";
 import globalStyles from "@components/globalStyles";
 import ReportChat from "@components/ReportChat";
@@ -15,10 +14,10 @@ const chatScreen = props => {
                 <Text h5>Chatting as: {props.user}</Text>
             </Row>
             <Row>
-                {props.ignorePressed ? <ActivityIndicator size="small" color="#00ff00"/> :
-                    <Button containerStyle={globalStyles.buttonContainerStyle} buttonStyle={globalStyles.buttonStyle}
-                            disabled={props.ignorePressed} title="Ignore Partner"
-                            onPress={() => props.onIgnorePartner()}/>}
+
+                <Button containerStyle={globalStyles.buttonContainerStyle} buttonStyle={globalStyles.buttonStyle}
+                        disabled={props.ignorePressed} title="Ignore Partner"
+                        onPress={() => props.onIgnorePartner()}/>
             </Row>
             <Row>
                 <Button title="Report" onPress={() => props.setOverlay(true)}/>

@@ -1,5 +1,4 @@
 import React from "react";
-import {ActivityIndicator} from "react-native";
 import {Grid, Row} from "react-native-easy-grid";
 import {Button, Input, Text} from "react-native-elements"
 import loginScreenEnhancer from "./enhancer";
@@ -21,11 +20,11 @@ const loginScreen = props => {
                            label="One-Time Password"/> : <Text>Please enter your number</Text>}
             </Row>
             <Row>
-                {props.loginPressed ? <ActivityIndicator size="small" color="#00ff00"/> :
-                    <Button containerStyle={globalStyles.buttonContainerStyle} buttonStyle={globalStyles.buttonStyle}
-                            title={props.otpSent ? "Login" : "Send OTP"} onPress={() => {
-                        props.otpSent ? props.onLogin() : props.onRequestOtp()
-                    }}/>}
+
+                <Button containerStyle={globalStyles.buttonContainerStyle} buttonStyle={globalStyles.buttonStyle}
+                        title={props.otpSent ? "Login" : "Send OTP"} disabled={props.loginPressed} onPress={() => {
+                    props.otpSent ? props.onLogin() : props.onRequestOtp()
+                }}/>
             </Row>
         </Grid>
     )
