@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {ImageBackground} from "react-native";
+import {BackHandler, ImageBackground} from "react-native";
 import {compose} from "redux";
 import {connect} from "react-redux";
 import {useNavigation} from '@react-navigation/native';
@@ -36,6 +36,12 @@ export default compose(
             await props.logoutListener();
             navigation.navigate("FrontPageScreen");
         }
+
+        useEffect(() => {
+            const handleBackPress = () => navigation.navigate("FrontPageScreen");
+            BackHandler.addEventListener("hardwareBackPress", handleBackPress);
+            return BackHandler.removeEventListener("hardwareBackPress", handleBackPress);
+        }, [])
 
 
         useEffect(() => {

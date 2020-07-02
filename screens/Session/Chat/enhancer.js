@@ -61,10 +61,6 @@ export default compose(
             navigation.navigate("FrontPageScreen");
         }
 
-        const handleBackPress = () => {
-            toast("Back button is disabled");
-            return true;
-        }
 
         useEffect(() => {
             if (props.partnerLeft) {
@@ -73,6 +69,7 @@ export default compose(
         }, [props.partnerLeft])
 
         useEffect(() => {
+            const handleBackPress = () => true;
             BackHandler.addEventListener("hardwareBackPress", handleBackPress);
             props.messageWatch();
             return BackHandler.removeEventListener("hardwareBackPress", handleBackPress);

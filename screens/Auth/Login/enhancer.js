@@ -28,6 +28,7 @@ export default compose(
         const [loginPressed, setLoginPressed] = useState(false);
         const [number, setNumber] = useState();
         const [otp, setOtp] = useState();
+        const [updateView, setUpdateView] = useState(0);
 
         const onRequestOtp = async () => {
             setLoginPressed(true);
@@ -39,7 +40,9 @@ export default compose(
             setLoginPressed(true);
             const loginRes = await props.authListener(number, otp);
             if (loginRes) {
-                navigation.navigate("WaitingPoolScreen");
+                toast(`Logged in as ${number}. Refreshing view...`)
+                setUpdateView((updateView) => ++updateView);
+                navigation.navigate("FrontPageScreen");
             }
             setLoginPressed(false);
         }

@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {ImageBackground} from "react-native";
+import {BackHandler, ImageBackground} from "react-native";
 import {compose} from "redux";
 import {connect} from "react-redux";
 import {startSession} from "@redux/state/chat/ChatState";
@@ -40,6 +40,12 @@ export default compose(
                 return false;
             }
         }
+
+        useEffect(() => {
+            const handleBackPress = () => navigation.navigate("FrontPageScreen");
+            BackHandler.addEventListener("hardwareBackPress", handleBackPress);
+            return BackHandler.removeEventListener("hardwareBackPress", handleBackPress);
+        }, [])
 
         return (
             <ImageBackground source={Images.background} style={globalStyles.bg}>

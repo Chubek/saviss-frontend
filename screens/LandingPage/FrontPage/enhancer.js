@@ -29,7 +29,6 @@ export default compose(
 
 
         useEffect(() => {
-
             const handleBackPress = () => true;
             BackHandler.addEventListener("hardwareBackPress", handleBackPress);
             return () => {

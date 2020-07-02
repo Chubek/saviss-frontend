@@ -1,6 +1,6 @@
 import React from "react";
 import {Grid, Row} from "react-native-easy-grid";
-import {Input, Button} from "react-native-elements";
+import {Input, Text, Button} from "react-native-elements";
 import startSessionEnhancer from "./enhancer"
 import globalStyles from "@components/globalStyles";
 
@@ -8,11 +8,8 @@ import globalStyles from "@components/globalStyles";
 const startSessionScreen = props => {
     return (
         <Grid>
-            <Row size={2} style={globalStyles.adSpace}/>
-            <Row>
-                <Input style={globalStyles.input} labelStyle={globalStyles.label} maxLength={13}
-                       onChangeText={t => props.setNumber(t)}
-                       label="Your Number"/>
+            <Row size={2} style={globalStyles.adSpace}>
+                <Text h4>Ad</Text>
             </Row>
             <Row>
                 <Input style={globalStyles.input} labelStyle={globalStyles.label} multiline numberOfLines={5}
