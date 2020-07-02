@@ -67,7 +67,7 @@ export default compose(
         }
 
         useEffect(() => {
-            BackHandler.addEventListener("hardwareBackPress", handleBackPress)
+            BackHandler.addEventListener("hardwareBackPress", handleBackPress);
 
             props.messageWatch();
 

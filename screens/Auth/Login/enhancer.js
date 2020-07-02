@@ -1,11 +1,12 @@
 import React, {useState, useEffect} from "react";
 import Images from "@components/Images";
-import {ImageBackground} from "react-native";
+import {BackHandler, ImageBackground} from "react-native";
 import {compose} from "redux";
 import {connect} from "react-redux";
 import {authListener, requestOtp, getPushToken} from "@redux/state/listener/ListenerState";
 import {useNavigation} from '@react-navigation/native';
 import globalStyles from "@components/globalStyles";
+import {toast} from "@wrappers/toast";
 
 
 export default compose(
@@ -43,12 +44,23 @@ export default compose(
         }
 
 
+        const handleBackPress = () => {
+            toast("Back button is disabled");
+            return true;
+        }
+
         useEffect(() => {
+
+            BackHandler.addEventListener("hardwareBackPress", handleBackPress);
+
             if (props.banned) {
                 navigation.navigate("BannedScreen");
             }
 
             props.getPushToken().done();
+
+            return BackHandler.removeEventListener("hardwareBackPress", handleBackPress);
+
         })
 
 

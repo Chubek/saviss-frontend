@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "247Buddy-Rewrite-Refresh-Hamster",
-    "slug": "247buddy-rewrite-refresh-hamster",
+    "name": "247Buddy-Rewrite-Refresh-Canary",
+    "slug": "247buddy-rewrite-refresh-canary",
     "extra": {
       "serverUrl": "https://demo-247buddy.herokuapp.com",
       "ablyAPI": "E1CEFA.1C9wKg:UtJN7HMbbJlD6PJk"
