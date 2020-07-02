@@ -8,9 +8,6 @@ import globalStyles from "@components/globalStyles";
 const startSessionScreen = props => {
     return (
         <Grid>
-            <Row size={2} style={globalStyles.adSpace}>
-                <Text h4>Ad</Text>
-            </Row>
             <Row>
                 <Input style={globalStyles.input} labelStyle={globalStyles.label} multiline numberOfLines={5}
                        onChangeText={t => props.setReason(t)}

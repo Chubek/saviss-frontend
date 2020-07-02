@@ -22,7 +22,7 @@ const loginScreen = props => {
             <Row>
 
                 <Button containerStyle={globalStyles.buttonContainerStyle} buttonStyle={globalStyles.buttonStyle}
-                        title={props.otpSent ? "Login" : "Send OTP"} disabled={props.loginPressed} onPress={() => {
+                        title={props.loginText} disabled={props.loginPressed} onPress={() => {
                     props.otpSent ? props.onLogin() : props.onRequestOtp()
                 }}/>
             </Row>

@@ -25,6 +25,7 @@ export default compose(
     Component => props => {
         const navigation = useNavigation();
 
+        const [loginText, setLoginText] = useState("Request OTP");
         const [loginPressed, setLoginPressed] = useState(false);
         const [number, setNumber] = useState();
         const [otp, setOtp] = useState();
@@ -32,19 +33,25 @@ export default compose(
 
         const onRequestOtp = async () => {
             setLoginPressed(true);
+            setLoginText("Sending OTP");
             await props.requestOtp(number);
+            setLoginText("Login");
             setLoginPressed(false);
         }
 
         const onLogin = async () => {
-            setLoginPressed(true);
-            const loginRes = await props.authListener(number, otp);
-            if (loginRes) {
-                toast(`Logged in as ${number}. Refreshing view...`)
-                setUpdateView((updateView) => ++updateView);
-                navigation.navigate("FrontPageScreen");
+            if (props.otpSent) {
+                setLoginText("Logging In");
+                setLoginPressed(true);
+                const loginRes = await props.authListener(number, otp);
+                if (loginRes) {
+                    setUpdateView((updateView) => ++updateView);
+                    navigation.navigate("FrontPageScreen");
+                }
+            } else {
+                toast("OTP not sent");
             }
-            setLoginPressed(false);
+
         }
 
         useEffect(() => {
@@ -74,6 +81,7 @@ export default compose(
                 <Component {...props} {...{
                     onRequestOtp, onLogin, setNumber,
                     setOtp,
+                    loginText,
                     loginPressed
                 }}/>
             </ImageBackground>
