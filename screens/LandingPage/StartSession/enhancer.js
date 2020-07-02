@@ -14,7 +14,7 @@ export default compose(
             isChatting: state.chat.isChatting,
         }),
         dispatch => ({
-            startSession: (reason) => dispatch(startSession(number, reason))
+            startSession: (reason) => dispatch(startSession(reason))
         })
     ),
     Component => props => {
