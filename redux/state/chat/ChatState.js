@@ -29,10 +29,10 @@ const initialState = {
 };
 
 
-export function startSession(seekerNumber, seekerReason) {
-    return async dispatch => {
+export function startSession(seekerReason) {
+    return async (dispatch, getState) => {
 
-        const startRes = await _startSession(seekerNumber, seekerReason);
+        const startRes = await _startSession(getState().listener.number, seekerReason);
 
         if (startRes) {
             dispatch({type: CONSTANTS.SET_SESSION_ID, payload: startRes});

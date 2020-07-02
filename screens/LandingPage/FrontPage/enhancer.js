@@ -5,8 +5,7 @@ import {useNavigation} from '@react-navigation/native';
 import {BackHandler, ImageBackground} from "react-native";
 import Images from "@components/Images";
 import globalStyles from "@components/globalStyles";
-import {authListener, requestOtp} from "@redux/state/listener/ListenerState";
-import {toast} from "@wrappers/toast";
+import Login from "../../Auth/Login";
 
 export default compose(
     connect(
@@ -32,9 +31,7 @@ export default compose(
         useEffect(() => {
 
             const handleBackPress = () => true;
-
             BackHandler.addEventListener("hardwareBackPress", handleBackPress);
-
             return () => {
                 BackHandler.removeEventListener("hardwareBackPress", handleBackPress)
             };
@@ -42,11 +39,9 @@ export default compose(
         })
 
 
-        useEffect(() => {
-            if (!props.number) {
-                navigation.navigate("LoginScreen");
-            }
-        })
+        if (!props.number) {
+            return <Login/>;
+        }
 
         return (
             <ImageBackground source={Images.background} style={globalStyles.bg}>

@@ -34,20 +34,21 @@ export default compose(
         }
 
         useEffect(() => {
-
             props.seekerLounge();
+        }, []);
 
+        useEffect(() => {
             if (props.acceptedByListener) {
                 navigation.navigate("ChatScreen");
             }
-        })
+        }, [props.acceptedByListener])
 
         return (
-            <ImageBackground source={Images.background} style={globalStyles.bg} >
+            <ImageBackground source={Images.background} style={globalStyles.bg}>
                 <Component {...props} {...{onCancelSession, cancelPushed}} />
             </ImageBackground>
         )
 
     }
-    )
+)
 

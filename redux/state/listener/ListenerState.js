@@ -117,7 +117,7 @@ export default function ListenerStateReducer(
         case CONSTANTS.SET_NUMBER:
             return {
                 ...state,
-                token: action.payload
+                number: action.payload
             };
         case CONSTANTS.SET_BANNED:
             return {

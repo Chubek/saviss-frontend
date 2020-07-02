@@ -67,19 +67,16 @@ export default compose(
         }
 
         useEffect(() => {
-            BackHandler.addEventListener("hardwareBackPress", handleBackPress);
-
-            props.messageWatch();
-
             if (props.partnerLeft) {
-                toast("Chat partner left the message");
                 navigation.navigate("FrontPageScreen");
             }
+        }, [props.partnerLeft])
 
+        useEffect(() => {
+            BackHandler.addEventListener("hardwareBackPress", handleBackPress);
+            props.messageWatch();
             return BackHandler.removeEventListener("hardwareBackPress", handleBackPress);
-
-
-        })
+        }, [])
 
 
         return (

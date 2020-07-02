@@ -48,22 +48,22 @@ export default compose(
             if (props.banned) {
                 navigation.navigate("BannedScreen");
             }
+        }, [props.banned])
 
+        useEffect(() => {
             props.getPushToken().done();
-        })
-
+        }, [])
 
         useEffect(() => {
 
             const handleBackPress = () => true;
-
             BackHandler.addEventListener("hardwareBackPress", handleBackPress);
 
             return () => {
-                BackHandler.removeEventListener("hardwareBackPress", handleBackPress)
+                BackHandler.removeEventListener("hardwareBackPress", handleBackPress);
             };
 
-        })
+        }, [])
 
 
         return (

@@ -41,7 +41,7 @@ export default compose(
         useEffect(() => {
             props.getPool().done();
             props.updatePool();
-        })
+        }, [])
 
         return (
             <ImageBackground source={Images.background} style={globalStyles.bg}>

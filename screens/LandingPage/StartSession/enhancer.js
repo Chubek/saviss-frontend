@@ -14,20 +14,20 @@ export default compose(
             isChatting: state.chat.isChatting,
         }),
         dispatch => ({
-            startSession: (number, reason) => dispatch(startSession(number, reason))
+            startSession: (reason) => dispatch(startSession(number, reason))
         })
     ),
     Component => props => {
         const navigation = useNavigation();
 
-        const [number, setNumber] = useState();
+
         const [reason, setReason] = useState();
         const [buttonPressed, setButtonPressed] = useState(false);
 
         const onStartSession = async () => {
             if (!props.isChatting) {
                 setButtonPressed(true);
-                const startRes = await props.startSession(number, reason);
+                const startRes = await props.startSession(reason);
 
                 if (startRes) {
                     navigation.navigate("SeekerLoungeScreen");
@@ -43,7 +43,7 @@ export default compose(
 
         return (
             <ImageBackground source={Images.background} style={globalStyles.bg}>
-                <Component {...props} {...{setNumber, setReason, buttonPressed, onStartSession}} />
+                <Component {...props} {...{setReason, buttonPressed, onStartSession}} />
             </ImageBackground>
         )
     }
