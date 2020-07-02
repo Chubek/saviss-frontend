@@ -1,25 +1,23 @@
 {
   "expo": {
-    "name": "247Buddy-Rewrite",
-    "slug": "247buddy-rewrite",
+    "name": "247Buddy",
+    "slug": "247buddy",
     "extra": {
       "serverUrl": "https://demo-247buddy.herokuapp.com",
       "ablyAPI": "E1CEFA.1C9wKg:UtJN7HMbbJlD6PJk"
     },
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/logo_without_text.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/logo_without_text.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "bundleIdentifier": "com.sethuraman.buddychat",
       "buildNumber": "1.0.0",
