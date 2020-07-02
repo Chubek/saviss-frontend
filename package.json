@@ -18,10 +18,6 @@
     "ably-react-native": "^1.1.1",
     "axios": "^0.19.2",
     "babel-jest": "^26.0.1",
-    "babel-plugin-dotenv": "^0.1.1",
-    "babel-plugin-dotenv-import": "^2.1.0",
-    "babel-plugin-inline-dotenv": "^1.5.0",
-    "babel-preset-react-native": "^4.0.1",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
     "expo": "~38.0.1",
@@ -57,11 +53,7 @@
     "redux": "^4.0.5",
     "redux-logger": "^3.0.6",
     "redux-persist": "^6.0.0",
-    "redux-thunk": "^2.3.0",
-    "socket.io-client": "^2.3.0",
-    "stream-chat-expo": "^0.10.2",
-    "websocket": "^1.0.31",
-    "ws": "^7.3.0"
+    "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.8.6",

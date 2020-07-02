@@ -19,7 +19,13 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
+      "bundleIdentifier": "com.sethuraman.buddychat",
+      "buildNumber": "1.0.0",
       "supportsTablet": true
+    },
+    "android": {
+      "package": "com.sethuraman.buddychat",
+      "versionCode": 1
     },
     "web": {
       "favicon": "./assets/favicon.png"
