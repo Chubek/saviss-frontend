@@ -36,7 +36,7 @@ export default function NavigationStack() {
                     options={{title: "Start Session"}}
                 />
                 <Stack.Screen
-                    name="UserPanelScreen"
+                    name="WaitingPoolScreen"
                     component={WaitingPoolScreen}
                     options={{title: "Waiting Pool"}}
                 />

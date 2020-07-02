@@ -8,7 +8,7 @@ import globalStyles from "@components/globalStyles";
 const startSessionScreen = props => {
     return (
         <Grid>
-            <Row size={20} style={globalStyles.adSpace}/>
+            <Row size={2} style={globalStyles.adSpace}/>
             <Row>
                 <Input style={globalStyles.input} labelStyle={globalStyles.label} maxLength={13}
                        onChangeText={t => props.setNumber(t)}

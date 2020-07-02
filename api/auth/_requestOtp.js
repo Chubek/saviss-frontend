@@ -5,6 +5,14 @@ import {toast} from "@wrappers/toast";
 export const _requestOtp = async (number, pushToken) => {
     if (!number) {
         toast("No number has been entered");
+        return false;
+    }
+
+    const pattern = /^\+*(\d{3})*[0-9,\-]{8,}/;
+
+    if (!pattern.test(number)) {
+        toast("Use plus for country code, not double Os!");
+        return false;
     }
 
     try {

@@ -44,23 +44,24 @@ export default compose(
             setLoginPressed(false);
         }
 
-
-        const handleBackPress = () => {
-            toast("Back button is disabled");
-            return true;
-        }
-
         useEffect(() => {
-
-            BackHandler.addEventListener("hardwareBackPress", handleBackPress);
-
             if (props.banned) {
                 navigation.navigate("BannedScreen");
             }
 
             props.getPushToken().done();
+        })
 
-            return BackHandler.removeEventListener("hardwareBackPress", handleBackPress);
+
+        useEffect(() => {
+
+            const handleBackPress = () => true;
+
+            BackHandler.addEventListener("hardwareBackPress", handleBackPress);
+
+            return () => {
+                BackHandler.removeEventListener("hardwareBackPress", handleBackPress)
+            };
 
         })
 

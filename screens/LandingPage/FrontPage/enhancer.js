@@ -28,22 +28,24 @@ export default compose(
             navigation.navigate("DonationScreen")
         }
 
-        const handleBackPress = () => {
-            toast("Back button is disabled");
-            return true;
-        }
 
         useEffect(() => {
 
+            const handleBackPress = () => true;
+
             BackHandler.addEventListener("hardwareBackPress", handleBackPress);
 
+            return () => {
+                BackHandler.removeEventListener("hardwareBackPress", handleBackPress)
+            };
 
+        })
+
+
+        useEffect(() => {
             if (!props.number) {
                 navigation.navigate("LoginScreen");
             }
-
-            return BackHandler.removeEventListener("hardwareBackPress", handleBackPress);
-
         })
 
         return (

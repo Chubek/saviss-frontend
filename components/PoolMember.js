@@ -8,7 +8,7 @@ const poolMember = props => {
 
     const calcTimeDiff = (givenTime) => {
         const millis = moment().diff(props.requestedAt);
-        return moment.utc(millis).format("h:mm:ss");
+        return moment.utc(millis).format("mm:ss");
     }
 
     return (

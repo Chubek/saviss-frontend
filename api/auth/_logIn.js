@@ -6,13 +6,19 @@ export const _logIn = async (number, otp) => {
     try {
         if (!number) {
             toast("Number hasn't been entered");
-
             return false;
         }
 
         if (!otp) {
-            toast("OTP hasn't been entered")
+            toast("OTP hasn't been entered");
+            return false;
+        }
 
+
+        const pattern = /^\+*(\d{3})*[0-9,\-]{8,}/;
+
+        if (!pattern.test(number)) {
+            toast("Use plus for country code, not double Os!");
             return false;
         }
 
