@@ -7,12 +7,12 @@ import reducer from "./reducer";
 
 const enhancers = [
   applyMiddleware(
-    thunkMiddleware,
-    createLogger({
-      collapsed: true,
-      // eslint-disable-next-line no-undef
-      predicate: () => __DEV__,
-    })
+    thunkMiddleware
+    // createLogger({
+    //   collapsed: true,
+    //   // eslint-disable-next-line no-undef
+    //   predicate: () => __DEV__,
+    // })
   ),
 ];
 
