@@ -7,6 +7,9 @@ import globalStyles from "@components/globalStyles";
 const seekerLoungeScreen = props => {
     return (
         <Grid>
+            <Row size={2} style={globalStyles.adSpace}>
+                <Text h3>Ad Space</Text>
+            </Row>
             <Row>
                 <Text h2 style={globalStyles.waitingTextStyle}>Waiting to be accepted...</Text>
             </Row>
