@@ -11,10 +11,11 @@ export const _getPool = async (listenerToken) => {
             return poolRes.data.pool;
         }
     } catch (e) {
-        console.log(e);
         if (e.response.status === 404) {
             toast("Nothing to show");
         }
+
+        throw e;
     }
 }
 

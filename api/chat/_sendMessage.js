@@ -12,7 +12,6 @@ export const _sendMessage = async (message, sessionId) => {
         }
 
     } catch (e) {
-        console.log(e);
         throw new Error(e);
     }
 }

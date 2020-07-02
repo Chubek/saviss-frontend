@@ -22,8 +22,6 @@ export const _logIn = async (number, otp) => {
             return false;
         }
 
-        console.log("serverUrl", Constants.manifest.extra.serverUrl);
-
         const authRes = await axios.post(`${Constants.manifest.extra.serverUrl}/user/auth`, {
             number,
             otp
