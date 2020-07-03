@@ -27,8 +27,9 @@ const composeEnhancers =
 const enhancer = composeEnhancers(...enhancers);
 
 const persistConfig = {
-    key: "root-v22",
+    key: "root-v24",
     storage: AsyncStorage,
+    blacklist: ['pool', 'chat']
 };
 
 const persistedReducer = persistReducer(persistConfig, reducer);
