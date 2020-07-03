@@ -25,7 +25,6 @@ export default compose(
     Component => props => {
         const navigation = useNavigation();
 
-        const [loginText, setLoginText] = useState("Request OTP");
         const [loginPressed, setLoginPressed] = useState(false);
         const [number, setNumber] = useState();
         const [otp, setOtp] = useState();
@@ -33,9 +32,7 @@ export default compose(
 
         const onRequestOtp = async () => {
             setLoginPressed(true);
-            setLoginText("Sending OTP");
             await props.requestOtp(number);
-            setLoginText("Login");
             setLoginPressed(false);
         }
 
@@ -45,7 +42,6 @@ export default compose(
 
         const onLogin = async () => {
             if (props.otpSent) {
-                setLoginText("Logging In");
                 setLoginPressed(true);
                 const loginRes = await props.authListener(number, otp);
                 if (loginRes) {
@@ -86,7 +82,6 @@ export default compose(
                     onRequestOtp, onLogin, setNumber,
                     onNavigateToTOS,
                     setOtp,
-                    loginText,
                     loginPressed
                 }}/>
             </ImageBackground>

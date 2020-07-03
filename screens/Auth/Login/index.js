@@ -9,35 +9,43 @@ import {Keyboard, TouchableWithoutFeedback} from 'react-native';
 const loginScreen = props => {
     return (
         <Grid>
-            <TouchableWithoutFeedback
-                onPress={() => {
-                    Keyboard.dismiss()
-                }}>
-                <View>
-                    <Row>
+            <Row>
+                <TouchableWithoutFeedback
+                    onPress={() => {
+                        Keyboard.dismiss()
+                    }}>
+
+
 
                         <Input style={globalStyles.input} labelStyle={globalStyles.label} maxLength={15}
                                onChangeText={t => props.setNumber(t)}
                                label="Number"/>
-                    </Row>
-                    <Row>
+                </TouchableWithoutFeedback>
+            </Row>
+            <Row>
+                <TouchableWithoutFeedback
+                    onPress={() => {
+                        Keyboard.dismiss()
+                    }}>
+
                         {props.otpSent ?
                             <Input style={globalStyles.input} labelStyle={globalStyles.label} maxLength={4}
                                    onChangeText={t => props.setOtp(t)}
-                                   label="One-Time Password"/> : <Text>Please enter your number</Text>}
+                                   label="One-Time Password"/> : <Text>Please enter your number {props.otpSent}</Text>}
 
-                    </Row>
-                </View>
-            </TouchableWithoutFeedback>
+                </TouchableWithoutFeedback>
+            </Row>
+
+
             <Row>
 
                 <Button containerStyle={globalStyles.buttonContainerStyle} buttonStyle={globalStyles.buttonStyle}
-                        title={props.loginText} disabled={props.loginPressed} onPress={() => {
+                        title={props.otpSent ? "Login" : "Request OTP"} disabled={props.loginPressed} onPress={() => {
                     props.otpSent ? props.onLogin() : props.onRequestOtp()
                 }}/>
             </Row>
 
-            <Row style={globalStyles.tos}>
+            <Row>
                 <Text>By logging in, you agree to </Text><Text style={globalStyles.link}
                                                                onPress={() => props.onNavigateToTOS()}>Terms and
                 Conditions</Text>

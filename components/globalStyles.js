@@ -66,7 +66,6 @@ export default styles = StyleSheet.create({
         backgroundColor: "#124",
         width: "80%",
         alignSelf: "center",
-        marginTop: -100
     },
     buttonStyle: {
         backgroundColor: "#124",

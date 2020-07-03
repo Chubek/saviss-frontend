@@ -4,6 +4,8 @@ import {_requestOtp} from "@api/auth/_requestOtp";
 import {_ignore} from "@api/auth/_ignore";
 import {toast} from "@wrappers/toast";
 import {_getPushToken} from "@api/auth/_getPushToken";
+import {persistReducer} from 'redux-persist';
+import {AsyncStorage} from "react-native";
 
 const initialState = {
     token: null,
@@ -135,3 +137,5 @@ export default function ListenerStateReducer(
             return state;
     }
 }
+
+

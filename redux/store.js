@@ -1,8 +1,9 @@
-import { applyMiddleware, createStore, compose } from "redux";
-import { persistStore, persistReducer } from "redux-persist";
-import { AsyncStorage } from "react-native";
+import {applyMiddleware, createStore, compose} from "redux";
+import {persistStore, persistReducer} from "redux-persist";
+import {AsyncStorage} from "react-native";
 import thunkMiddleware from "redux-thunk";
-import { createLogger } from "redux-logger";
+import {createLogger} from "redux-logger";
+import {createFilter} from 'redux-persist-transform-filter';
 import reducer from "./reducer";
 
 const enhancers = [
@@ -26,10 +27,16 @@ const composeEnhancers =
 
 const enhancer = composeEnhancers(...enhancers);
 
+const saveSubsetFilter = createFilter(
+    'listener',
+    ['token']
+);
+
 const persistConfig = {
-    key: "root-v13",
+    key: "root-v17",
     storage: AsyncStorage,
-    whitelist: ['listener']
+    whitelist: ['listener'],
+    transforms: [saveSubsetFilter]
 };
 
 const persistedReducer = persistReducer(persistConfig, reducer);

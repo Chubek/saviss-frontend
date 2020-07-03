@@ -54,7 +54,7 @@ export default function NavigationStack() {
                 <Stack.Screen
                     name="TOSScreen"
                     component={TermsAndConditionsScreen}
-                    options={{headerShown: false}}
+                    options={{title: "Accept by Going Back"}}
                 />
             </Stack.Navigator>
         </NavigationContainer>

@@ -1,21 +1,11 @@
-import React, {useState, useEffect} from "react";
-import {View, Text, ScrollView, Dimensions, TouchableOpacity, BackHandler} from 'react-native';
+import React, {useEffect} from "react";
+import {View, Text, ScrollView, TouchableOpacity, BackHandler} from 'react-native';
 import globalStyles from "@components/globalStyles";
+import {Button} from "react-native-elements";
 import {useNavigation} from '@react-navigation/native';
 import {toast} from "@wrappers/toast";
 
 const termsAndConditionsComponent = () => {
-
-    const navigation = useNavigation();
-
-    useEffect(() => {
-        const handleBackPress = () => {
-            toast("Please accept the TOS")
-            return true
-        };
-        BackHandler.addEventListener("hardwareBackPress", handleBackPress);
-        return BackHandler.removeEventListener("hardwareBackPress", handleBackPress);
-    }, [])
 
     return (
         <View style={globalStyles.container}>
@@ -70,10 +60,6 @@ const termsAndConditionsComponent = () => {
                 <Text style={globalStyles.tcP}>The use of this website is subject to the following terms of use</Text>
             </ScrollView>
 
-            <TouchableOpacity  onPress={() => navigation.goBack()}
-                              style={globalStyles.button}><Text
-                style={globalStyles.buttonLabel}>Accept</Text>
-            </TouchableOpacity>
         </View>
     );
 }
