@@ -4,8 +4,8 @@ import {toast} from "@wrappers/toast";
 import Constants from "expo-constants";
 
 
-export const _startSession = async (seekerNumber, seekerReason) => {
-    if (!seekerNumber) {
+export const _startSession = async (seekerToken, seekerReason) => {
+    if (!seekerToken) {
         toast("Number not entered");
         return false;
     }
@@ -16,7 +16,9 @@ export const _startSession = async (seekerNumber, seekerReason) => {
     }
 
     try {
-        const sessionRes = await axios.post(`${Constants.manifest.extra.serverUrl}/session/startSession`, {seekerNumber, seekerReason});
+        const sessionRes = await axios.post(`${Constants.manifest.extra.serverUrl}/session/startSession`,
+            {seekerReason},
+            {headers: {"x-auth-number": seekerToken}});
 
         if (sessionRes.status === 200) {
             await axios.post(`${Constants.manifest.extra.serverUrl}/poolop/entered/${sessionRes.data.sessionId}`);

@@ -66,6 +66,7 @@ export default styles = StyleSheet.create({
         backgroundColor: "#124",
         width: "80%",
         alignSelf: "center",
+        marginTop: -100
     },
     buttonStyle: {
         backgroundColor: "#124",
@@ -80,4 +81,7 @@ export default styles = StyleSheet.create({
     waitingTextStyle: {
         color: "#fff",
     },
+    tos: {
+        marginTop: -150
+    }
 });

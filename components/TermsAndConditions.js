@@ -8,14 +8,6 @@ const termsAndConditionsComponent = () => {
 
     const navigation = useNavigation();
 
-    const isCloseToBottom = ({layoutMeasurement, contentOffset, contentSize}) => {
-        const paddingToBottom = 20;
-        return layoutMeasurement.height + contentOffset.y >=
-            contentSize.height - paddingToBottom;
-    }
-
-    const [accepted, setAccepted] = useState(false);
-
     useEffect(() => {
         const handleBackPress = () => {
             toast("Please accept the TOS")
@@ -29,12 +21,7 @@ const termsAndConditionsComponent = () => {
         <View style={globalStyles.container}>
             <Text style={globalStyles.title}>Terms and conditions</Text>
             <ScrollView
-                style={globalStyles.tcContainer}
-                onScroll={({nativeEvent}) => {
-                    if (isCloseToBottom(nativeEvent)) {
-                        setAccepted(true);
-                    }
-                }}
+
             >
                 <Text style={globalStyles.tcP}>Welcome to our website. If you continue to browse and use this website,
                     you are
@@ -83,8 +70,8 @@ const termsAndConditionsComponent = () => {
                 <Text style={globalStyles.tcP}>The use of this website is subject to the following terms of use</Text>
             </ScrollView>
 
-            <TouchableOpacity disabled={!accepted} onPress={() => navigation.goBack()}
-                              style={accepted ? globalStyles.button : globalStyles.buttonDisabled}><Text
+            <TouchableOpacity  onPress={() => navigation.goBack()}
+                              style={globalStyles.button}><Text
                 style={globalStyles.buttonLabel}>Accept</Text>
             </TouchableOpacity>
         </View>

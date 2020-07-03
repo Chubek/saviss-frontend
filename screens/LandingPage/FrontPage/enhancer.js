@@ -9,7 +9,7 @@ import Login from "../../Auth/Login";
 
 export default compose(
   connect((state) => ({
-    number: state.listener.number,
+    token: state.listener.token,
   })),
   (Component) => (props) => {
     const navigation = useNavigation();
@@ -34,7 +34,7 @@ export default compose(
       };
     });
 
-    if (!props.number) {
+    if (!props.token) {
       return <Login />;
     }
 

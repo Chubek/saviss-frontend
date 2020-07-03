@@ -37,7 +37,7 @@ const loginScreen = props => {
                 }}/>
             </Row>
 
-            <Row>
+            <Row style={globalStyles.tos}>
                 <Text>By logging in, you agree to </Text><Text style={globalStyles.link}
                                                                onPress={() => props.onNavigateToTOS()}>Terms and
                 Conditions</Text>

@@ -6,7 +6,7 @@ import {toast} from "@wrappers/toast";
 import {_getPushToken} from "@api/auth/_getPushToken";
 
 const initialState = {
-    number: null,
+    token: null,
     otpSentNum: 3,
     otpSent: false,
     banned: false,
@@ -47,7 +47,7 @@ export function authListener(number, otp) {
                 const loginRes = await _logIn(number, otp);
 
                 if (loginRes) {
-                    dispatch({type: CONSTANTS.SET_NUMBER, payload: number});
+                    dispatch({type: CONSTANTS.SET_TOKEN, payload: loginRes});
                     dispatch({type: CONSTANTS.SET_OTP_SENT, payload: false});
                     dispatch({type: CONSTANTS.SET_REMAINING_NUM, payload: 3})
                     return true;
@@ -81,8 +81,8 @@ export function authListener(number, otp) {
 
 export function logoutListener() {
     return async (dispatch, getState) => {
-        if (getState().listener.number) {
-            dispatch({type: CONSTANTS.SET_NUMBER, payload: null});
+        if (getState().listener.token) {
+            dispatch({type: CONSTANTS.SET_TOKEN, payload: null});
             dispatch({type: CONSTANTS.SET_REMAINING_NUM, payload: null});
             dispatch({type: CONSTANTS.SET_OTP_SENT, payload: false});
             dispatch({type: CONSTANTS.SET_BANNED, payload: false});
@@ -93,7 +93,7 @@ export function logoutListener() {
 
 export function ignorePartner() {
     return async (dispatch, getState) => {
-        const ignoreRes = await _ignore(getState().chat.sessionId, getState().chat.user, getState().listener.number);
+        const ignoreRes = await _ignore(getState().chat.sessionId, getState().chat.user, getState().listener.token);
 
         if (ignoreRes) {
             return true;
@@ -116,10 +116,10 @@ export default function ListenerStateReducer(
                 ...state,
                 otpSentNum: action.payload
             };
-        case CONSTANTS.SET_NUMBER:
+        case CONSTANTS.SET_TOKEN:
             return {
                 ...state,
-                number: action.payload
+                token: action.payload
             };
         case CONSTANTS.SET_BANNED:
             return {

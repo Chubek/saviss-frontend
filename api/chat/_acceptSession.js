@@ -2,23 +2,24 @@ import axios from "axios"
 import {toast} from "@wrappers/toast";
 import Constants from "expo-constants";
 
-export const _acceptSession = async (sessionId, listenerNumber) => {
+export const _acceptSession = async (sessionId, listenerToken) => {
     if (!sessionId) {
         toast("No Session ID!");
         return false;
     }
 
-    if (!listenerNumber) {
-        toast("No listener number");
+    if (!listenerToken) {
+        toast("No listener token");
         return false;
     }
 
     try {
         const acceptRes = await axios.put(`${Constants.manifest.extra.serverUrl}/session/acceptSession`,
-            {sessionId, listenerNumber});
-        await axios.post(`${Constants.manifest.extra.serverUrl}/chat/accept`, {listenerNumber}, {
+            {sessionId}, {headers: {"x-auth-number-token": listenerToken}});
+        await axios.post(`${Constants.manifest.extra.serverUrl}/chat/accept`, {
             headers: {
-                "x-session-id": sessionId
+                "x-session-id": sessionId,
+                "x-auth-number-token": listenerToken
             }
         });
         await axios.post(`${Constants.manifest.extra.serverUrl}/poolop/accepted/${sessionId}`);

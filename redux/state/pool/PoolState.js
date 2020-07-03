@@ -13,9 +13,9 @@ const initialState = {
 export function getPool() {
     return async (dispatch, getState) => {
 
-        let poolRes = await _getPool(getState().listener.number);
+        let poolRes = await _getPool(getState().listener.token);
 
-        const ignoredNumbers = await _getIgnored(getState().listener.number);
+        const ignoredNumbers = await _getIgnored(getState().listener.token);
 
         poolRes = _.filter(poolRes, poolMember => !ignoredNumbers.includes(poolMember.seekerNumber));
 
@@ -39,8 +39,8 @@ export function updatePool() {
 
             channel.subscribe("entered", async (message) => {
                 const data = JSON.parse(message.data);
-                const poolRes = await _getSingle(data.sessionId, getState().listener.number);
-                const ignoredNumbers = await _getIgnored(getState().listener.number);
+                const poolRes = await _getSingle(data.sessionId, getState().listener.token);
+                const ignoredNumbers = await _getIgnored(getState().listener.token);
 
                 let isIgnored = false;
 

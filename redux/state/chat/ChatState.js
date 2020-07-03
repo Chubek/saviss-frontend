@@ -32,7 +32,7 @@ const initialState = {
 export function startSession(seekerReason) {
     return async (dispatch, getState) => {
 
-        const startRes = await _startSession(getState().listener.number, seekerReason);
+        const startRes = await _startSession(getState().listener.token, seekerReason);
 
         if (startRes) {
             dispatch({type: CONSTANTS.SET_SESSION_ID, payload: startRes});
@@ -52,7 +52,7 @@ export function startSession(seekerReason) {
 export function acceptSession(sessionId) {
     return async (dispatch, getState) => {
 
-        const acceptRes = _acceptSession(sessionId, getState().listener.number);
+        const acceptRes = _acceptSession(sessionId, getState().listener.token);
 
         if (acceptRes) {
             dispatch({type: CONSTANTS.SET_SESSION_ID, payload: sessionId});

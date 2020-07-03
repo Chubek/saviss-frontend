@@ -2,11 +2,11 @@ import axios from "axios";
 import {toast} from "@wrappers/toast";
 import Constants from "expo-constants";
 
-export const _getPool = async (listenerToken) => {
+export const _getPool = async (userToken) => {
     try {
         const poolRes = await axios.get(
             `${Constants.manifest.extra.serverUrl}/pool/get/`,
-            {headers: {"x-auth-token-listener": listenerToken}}
+            {headers: {"x-auth-token-number-token": userToken}}
         );
 
         if (poolRes.status === 200) {

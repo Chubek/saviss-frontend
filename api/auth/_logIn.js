@@ -29,7 +29,7 @@ export const _logIn = async (number, otp) => {
 
 
         if (authRes.status === 200) {
-            return true;
+            return authRes.data.token;
         }
 
     } catch (e) {
