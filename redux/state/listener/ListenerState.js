@@ -4,8 +4,7 @@ import {_requestOtp} from "@api/auth/_requestOtp";
 import {_ignore} from "@api/auth/_ignore";
 import {toast} from "@wrappers/toast";
 import {_getPushToken} from "@api/auth/_getPushToken";
-import {persistReducer} from 'redux-persist';
-import {AsyncStorage} from "react-native";
+
 
 const initialState = {
     token: null,
@@ -50,8 +49,6 @@ export function authListener(number, otp) {
 
                 if (loginRes) {
                     dispatch({type: CONSTANTS.SET_TOKEN, payload: loginRes});
-                    dispatch({type: CONSTANTS.SET_OTP_SENT, payload: false});
-                    dispatch({type: CONSTANTS.SET_REMAINING_NUM, payload: 3})
                     return true;
                 }
             } catch (e) {

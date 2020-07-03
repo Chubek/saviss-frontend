@@ -14,14 +14,6 @@ export const _logIn = async (number, otp) => {
             return false;
         }
 
-
-        const pattern = /^\+*(\d{3})*[0-9,\-]{8,}/;
-
-        if (!pattern.test(number)) {
-            toast("Use plus for country code, not double Os!");
-            return false;
-        }
-
         const authRes = await axios.post(`${Constants.manifest.extra.serverUrl}/user/auth`, {
             number,
             otp

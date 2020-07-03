@@ -31,7 +31,7 @@ const loginScreen = props => {
                         {props.otpSent ?
                             <Input style={globalStyles.input} labelStyle={globalStyles.label} maxLength={4}
                                    onChangeText={t => props.setOtp(t)}
-                                   label="One-Time Password"/> : <Text>Please enter your number {props.otpSent}</Text>}
+                                   label="One-Time Password"/> : <Text>Please enter your number</Text>}
 
                 </TouchableWithoutFeedback>
             </Row>

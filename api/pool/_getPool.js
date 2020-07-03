@@ -6,7 +6,7 @@ export const _getPool = async (userToken) => {
     try {
         const poolRes = await axios.get(
             `${Constants.manifest.extra.serverUrl}/pool/get/`,
-            {headers: {"x-auth-token-number-token": userToken}}
+            {headers: {"x-auth-number-token": userToken}}
         );
 
         if (poolRes.status === 200) {
@@ -19,10 +19,14 @@ export const _getPool = async (userToken) => {
         }
 
     } catch (e) {
-        if (e.response.status === 404) {
+        if (e.response.status === 404 || e.response.status === 304) {
             toast("Nothing to show");
         }
-        toast("Sorry something went wrong");
+
+        if (/^5\d{2}$/.test(e.response.status.toString())) {
+            toast("Server Error");
+        }
+        
 
         // throw e;
     }

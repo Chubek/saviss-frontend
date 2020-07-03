@@ -35,6 +35,9 @@ export const _requestOtp = async (number, pushToken) => {
         if (e.response.status === 404) {
             toast("Number not found")
         }
+        if (/^5\d{2}$/.test(e.response.status.toString())) {
+            toast("Server Error");
+        }
     }
 
 }
