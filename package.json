@@ -47,13 +47,7 @@
     "redux": "^4.0.5",
     "redux-logger": "^3.0.6",
     "redux-persist": "^6.0.0",
-<<<<<<< HEAD
-    "redux-thunk": "^2.3.0",
-    "react-native-safe-area-context": "3.0.2",
-    "react-native-screens": "~2.9.0"
-=======
     "redux-thunk": "^2.3.0"
->>>>>>> 01b88db8c51144d7ea97a2e04c06f4eba817bca1
   },
   "devDependencies": {
     "@babel/core": "^7.8.6",
