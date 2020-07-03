@@ -1,28 +1,34 @@
 import React from "react";
+import {View} from "react-native";
 import {Grid, Row} from "react-native-easy-grid";
 import {Button, Input, Text} from "react-native-elements"
 import loginScreenEnhancer from "./enhancer";
 import globalStyles from "@components/globalStyles";
-import DismissKeyboard from "@components/DismissKeyboard";
+import {Keyboard, TouchableWithoutFeedback} from 'react-native';
 
 const loginScreen = props => {
     return (
         <Grid>
-            <Row>
-                <DismissKeyboard>
-                    <Input style={globalStyles.input} labelStyle={globalStyles.label} maxLength={15}
-                           onChangeText={t => props.setNumber(t)}
-                           label="Number"/>
-                </DismissKeyboard>
-            </Row>
-            <Row>
-                <DismissKeyboard>
-                    {props.otpSent ?
-                        <Input style={globalStyles.input} labelStyle={globalStyles.label} maxLength={4}
-                               onChangeText={t => props.setOtp(t)}
-                               label="One-Time Password"/> : <Text>Please enter your number</Text>}
-                </DismissKeyboard>
-            </Row>
+            <TouchableWithoutFeedback
+                onPress={() => {
+                    Keyboard.dismiss()
+                }}>
+                <View>
+                    <Row>
+
+                        <Input style={globalStyles.input} labelStyle={globalStyles.label} maxLength={15}
+                               onChangeText={t => props.setNumber(t)}
+                               label="Number"/>
+                    </Row>
+                    <Row>
+                        {props.otpSent ?
+                            <Input style={globalStyles.input} labelStyle={globalStyles.label} maxLength={4}
+                                   onChangeText={t => props.setOtp(t)}
+                                   label="One-Time Password"/> : <Text>Please enter your number</Text>}
+
+                    </Row>
+                </View>
+            </TouchableWithoutFeedback>
             <Row>
 
                 <Button containerStyle={globalStyles.buttonContainerStyle} buttonStyle={globalStyles.buttonStyle}
