@@ -39,6 +39,10 @@ export default compose(
             setLoginPressed(false);
         }
 
+        const onNavigateToTOS = () => {
+            navigation.navigate("TOSScreen");
+        }
+
         const onLogin = async () => {
             if (props.otpSent) {
                 setLoginText("Logging In");
@@ -80,6 +84,7 @@ export default compose(
             <ImageBackground source={Images.background} style={globalStyles.bg}>
                 <Component {...props} {...{
                     onRequestOtp, onLogin, setNumber,
+                    onNavigateToTOS,
                     setOtp,
                     loginText,
                     loginPressed

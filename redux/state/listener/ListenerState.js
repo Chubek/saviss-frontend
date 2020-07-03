@@ -48,6 +48,8 @@ export function authListener(number, otp) {
 
                 if (loginRes) {
                     dispatch({type: CONSTANTS.SET_NUMBER, payload: number});
+                    dispatch({type: CONSTANTS.SET_OTP_SENT, payload: false});
+                    dispatch({type: CONSTANTS.SET_REMAINING_NUM, payload: 3})
                     return true;
                 }
             } catch (e) {

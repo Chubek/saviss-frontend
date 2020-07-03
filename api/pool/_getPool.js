@@ -14,7 +14,7 @@ export const _getPool = async (listenerToken) => {
         if (e.response.status === 404) {
             toast("Nothing to show");
         }
-
+        toast(e.message);
         throw e;
     }
 }
