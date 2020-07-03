@@ -1,13 +1,7 @@
-import {
-    ToastAndroid,
-    Platform,
-    Alert,
-} from 'react-native';
+import Toast from "react-native-tiny-toast";
 
 export const toast = (msg) => {
-    if (Platform.OS === 'android') {
-        ToastAndroid.show(msg, ToastAndroid.SHORT)
-    } else {
-        Alert.alert(msg);
-    }
-}
+  Toast.show(msg, {
+    position: Toast.position.top,
+  });
+};

@@ -1,54 +1,58 @@
-import React, {useEffect} from "react";
-import {compose} from "redux";
-import {connect} from "react-redux";
-import {useNavigation} from '@react-navigation/native';
-import {BackHandler, ImageBackground} from "react-native";
+import React, { useEffect } from "react";
+import { compose } from "redux";
+import { connect } from "react-redux";
+import { useNavigation } from "@react-navigation/native";
+import { BackHandler, ImageBackground } from "react-native";
 import Images from "@components/Images";
 import globalStyles from "@components/globalStyles";
 import Login from "../../Auth/Login";
 
 export default compose(
-    connect(
-        state => ({
-            number: state.listener.number
-        }),
-    ), Component => props => {
-        const navigation = useNavigation();
+  connect((state) => ({
+    number: state.listener.number,
+  })),
+  (Component) => (props) => {
+    const navigation = useNavigation();
 
-        const onNavigateToStarSession = () => {
-            navigation.navigate("StartSessionScreen");
-        }
+    const onNavigateToStarSession = () => {
+      navigation.navigate("StartSessionScreen");
+    };
 
-        const onNavigateToWaitingPool = () => {
-            navigation.navigate("WaitingPoolScreen")
-        }
+    const onNavigateToWaitingPool = () => {
+      navigation.navigate("WaitingPoolScreen");
+    };
 
-        const onNavigateToDonate = () => {
-            navigation.navigate("DonationScreen")
-        }
+    const onNavigateToDonate = () => {
+      navigation.navigate("DonationScreen");
+    };
 
+    useEffect(() => {
+      const handleBackPress = () => true;
+      BackHandler.addEventListener("hardwareBackPress", handleBackPress);
+      return () => {
+        BackHandler.removeEventListener("hardwareBackPress", handleBackPress);
+      };
+    });
 
-        useEffect(() => {
-            const handleBackPress = () => true;
-            BackHandler.addEventListener("hardwareBackPress", handleBackPress);
-            return () => {
-                BackHandler.removeEventListener("hardwareBackPress", handleBackPress)
-            };
+    if (!props.number) {
+      return <Login />;
+    }
 
-        })
-
-
-        if (!props.number) {
-            return <Login/>;
-        }
-
-        return (
-            <ImageBackground source={Images.background} style={globalStyles.bg}>
-                <Component {...props} {...{
-                    onNavigateToWaitingPool, onNavigateToStarSession,
-                    onNavigateToDonate
-                }}/>
-            </ImageBackground>
-        )
-    })
-
+    return (
+      <ImageBackground
+        source={Images.background}
+        style={globalStyles.bg}
+        imageStyle={{ resizeMode: "repeat" }}
+      >
+        <Component
+          {...props}
+          {...{
+            onNavigateToWaitingPool,
+            onNavigateToStarSession,
+            onNavigateToDonate,
+          }}
+        />
+      </ImageBackground>
+    );
+  }
+);

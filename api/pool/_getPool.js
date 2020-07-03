@@ -1,21 +1,29 @@
-import axios from "axios"
+import axios from "axios";
 import {toast} from "@wrappers/toast";
 import Constants from "expo-constants";
 
 export const _getPool = async (listenerToken) => {
     try {
-        const poolRes = await axios.get(`${Constants.manifest.extra.serverUrl}/pool/get/`, {headers: {"x-auth-token-listener": listenerToken}});
+        const poolRes = await axios.get(
+            `${Constants.manifest.extra.serverUrl}/pool/get/`,
+            {headers: {"x-auth-token-listener": listenerToken}}
+        );
 
-
-        if (poolRes.status === 200 || poolRes.status === 303) {
+        if (poolRes.status === 200) {
             return poolRes.data.pool;
         }
+
+        if (poolRes.status === 304) {
+            toast("Nothing new to show!");
+            return poolRes.data.pool;
+        }
+
     } catch (e) {
         if (e.response.status === 404) {
             toast("Nothing to show");
         }
-        toast(e.message);
-        throw e;
-    }
-}
+        toast("Sorry something went wrong");
 
+        // throw e;
+    }
+};
